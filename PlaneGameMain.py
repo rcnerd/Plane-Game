@@ -6,3 +6,4 @@ from Boosters import *
 from Coin import *
 from Spikes import *
 from Player import *
+print "I exist"
