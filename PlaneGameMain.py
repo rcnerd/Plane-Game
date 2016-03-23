@@ -25,4 +25,11 @@ boosters = pygame.sprite.Group()
 coins = pygame.sprite.Group()
 spikes = pygame.sprite.Group()
 all = pygame.sprite.OrderedUpdates()
+
+#Ball.containers = (balls, all)
+#Wall.containers = (boundries, all)
+#PlayerBall.containers = (players, all)
+
+level = Level("Levels\level1.layout")
+
 print "I exist"
