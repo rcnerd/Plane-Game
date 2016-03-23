@@ -1,4 +1,4 @@
 import sys, pygame, math, random
 
-class Spikes(pygame.sprite.Sprite):
+class Booster(pygame.sprite.Sprite):
     pass
