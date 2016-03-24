@@ -11,7 +11,8 @@ class Level():
         file = open(lev, 'r')
         lines = file.readlines()
         file.close()
-
+        
+        blockSize = 50
         #ballOdds = 3
         #ballMax = 10
         #ballCount = 0
@@ -32,7 +33,7 @@ class Level():
             for x, c in enumerate(line):
                 if c == '#':
                     Block("Pictures\Blocks, and background\Crates\obj_crate002.png", 
-                         [50*x+25,50*y+25])
+                         [blockSize*x+blockSize/2,blockSize*y+(blockSize/2)-800])
                 #if c == 'o':
                     #if ballCount < ballMax:
                         #if random.randint(1, ballOdds) == 1:

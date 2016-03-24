@@ -1,5 +1,5 @@
 import sys, pygame, math, random
-from Object import *
+from Thing import *
 from Block import *
 from Button import *
 from Booster import *
@@ -27,7 +27,7 @@ coins = pygame.sprite.Group()
 spikes = pygame.sprite.Group()
 all = pygame.sprite.OrderedUpdates()
 
-#Ball.containers = (balls, all)
+Block.containers = (blocks, all)
 #Wall.containers = (boundries, all)
 #PlayerBall.containers = (players, all)
 
@@ -35,30 +35,29 @@ level = Level("Levels\level1.layout")
 
 #player = level.player
 
-print "I exist"
 
 while True:
     for event in pygame.event.get():
         if event.type == pygame.QUIT: 
             sys.exit()
-        elif event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_UP:
-                player.go("up")
-            elif event.key == pygame.K_DOWN:
-                player.go("down")
-            elif event.key == pygame.K_LEFT:
-                player.go("left")
-            elif event.key == pygame.K_RIGHT:
-                player.go("right")
-        elif event.type == pygame.KEYUP:
-            if event.key == pygame.K_UP:
-                player.go("stop up")
-            elif event.key == pygame.K_DOWN:
-                player.go("stop down")
-            elif event.key == pygame.K_LEFT:
-                player.go("stop left")
-            elif event.key == pygame.K_RIGHT:
-                player.go("stop right")
+        #elif event.type == pygame.KEYDOWN:
+            #if event.key == pygame.K_UP:
+                #player.go("up")
+            #elif event.key == pygame.K_DOWN:
+                #player.go("down")
+            #elif event.key == pygame.K_LEFT:
+                #player.go("left")
+            #elif event.key == pygame.K_RIGHT:
+                #player.go("right")
+        #elif event.type == pygame.KEYUP:
+            #if event.key == pygame.K_UP:
+                #player.go("stop up")
+            #elif event.key == pygame.K_DOWN:
+                #player.go("stop down")
+            #elif event.key == pygame.K_LEFT:
+                #player.go("stop left")
+            #elif event.key == pygame.K_RIGHT:
+                #player.go("stop right")
     
     all.update(size)
     

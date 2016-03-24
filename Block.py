@@ -1,6 +1,6 @@
 import sys, pygame, math, random
-from Object import Object
+from Thing import Thing
 
-class Block(Object):
+class Block(Thing):
     def __init__(self, image, pos=[0,0]):
-        Object.__init__(self, image, pos=[0,0])
+        Thing.__init__(self, image, pos)

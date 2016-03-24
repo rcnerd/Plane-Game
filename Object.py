@@ -1,6 +1,6 @@
 import sys, pygame, math, random
 
-class Object(pygame.sprite.Sprite):
+class Thing(pygame.sprite.Sprite):
     def __init__(self, image, pos=[0,0]):
         pygame.sprite.Sprite.__init__(self, self.containers)
         
