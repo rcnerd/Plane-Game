@@ -1,5 +1,5 @@
 import pygame, sys, math, random
-#from Ball import *
+from Block import *
 #from Wall import *
 #from PlayerBall import *
 
@@ -28,11 +28,11 @@ class Level():
         for line in lines:
             print line
             
-        #for y, line in enumerate(lines):
-            #for x, c in enumerate(line):
-                #if c == '#':
-                    #Wall("wall.png", 
-                         #[25*x+12,25*y+12])
+        for y, line in enumerate(lines):
+            for x, c in enumerate(line):
+                if c == '#':
+                    Block("Pictures\Blocks, and background\Crates\obj_crate002.png", 
+                         [50*x+25,50*y+25])
                 #if c == 'o':
                     #if ballCount < ballMax:
                         #if random.randint(1, ballOdds) == 1:

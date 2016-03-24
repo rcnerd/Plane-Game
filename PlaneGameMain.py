@@ -15,7 +15,7 @@ width = 1000
 height = 800
 size = width, height
 
-bgColor = r,g,b = 0, 0, 0
+bgColor = r,g,b = 135, 206, 235
 
 screen = pygame.display.set_mode(size)
 
