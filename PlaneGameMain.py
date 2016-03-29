@@ -78,6 +78,7 @@ while True:
         #for ball2 in ballsHitBalls[ball1]:
             #ball1.collideBall(ball2)
     
+    
     bgColor = r,g,b
     screen.fill(bgColor)
     dirty = all.draw(screen)
