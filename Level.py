@@ -34,10 +34,10 @@ class Level():
                 if c == '#':
                     Block("Pictures\Blocks, and background\Crates\obj_crate002.png", 
                          [blockSize*x+blockSize/2,blockSize*y+(blockSize/2)-12000])
-                #if c == 'o':
-                    #if ballCount < ballMax:
-                        #if random.randint(1, ballOdds) == 1:
-                            #Ball(["ball.png"], [5,5], [25*x+12,25*y+12])
+                if c == 'A':
+                    Block("Pictures\Blocks, and background\Crates\slope.png", 
+                         [blockSize*x+blockSize/2,blockSize*y+(blockSize/2)-12000])
                 
-                #if c == '@':
-                    #self.player = PlayerBall("pBall.png",[6,6],[25*x+12,25*y+12])
+                if c == '/':
+                    Block("Pictures\Blocks, and background\Crates\slope.png", 
+                         [blockSize*x+blockSize/2,blockSize*y+(blockSize/2)-12000])
