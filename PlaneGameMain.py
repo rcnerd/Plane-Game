@@ -11,8 +11,8 @@ pygame.init()
 
 clock = pygame.time.Clock()
 
-width = 1200 
-height = 900
+width = 1000 
+height = 700
 size = width, height
 
 bgColor = r,g,b = 135, 206, 235
@@ -25,9 +25,11 @@ gamePeices = pygame.sprite.Group()
 boosters = pygame.sprite.Group()
 coins = pygame.sprite.Group()
 spikes = pygame.sprite.Group()
+Players = pygame.sprite.Group()
 all = pygame.sprite.OrderedUpdates()
 
 Block.containers = (blocks, all)
+Player.containers = (Players, all)
 #Wall.containers = (boundries, all)
 #PlayerBall.containers = (players, all)
 
