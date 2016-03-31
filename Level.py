@@ -34,19 +34,19 @@ class Level():
             for x, c in enumerate(line):
                 if c == '#':
                     Block("Pictures/Blocks, and background/Crates/obj_crate002.png", 
-                         [blockSize*x+blockSize/2,blockSize*y+(blockSize/2)-12100])
+                         [blockSize*x+blockSize/2, blockSize*y+(blockSize/2)-12100])
                 if c == 'A':
                     Block("Pictures/Blocks, and background/Crates/slope.png", 
-                         [blockSize*x+blockSize/2,blockSize*y+(blockSize/2)-12100])
+                         [blockSize*x+blockSize/2, blockSize*y+(blockSize/2)-12100])
                 
                 if c == '/':
                     Block("Pictures/Blocks, and background/Crates/ramp.png", 
-                         [blockSize*x+blockSize/2,blockSize*y+(blockSize/2)-12100])
+                         [blockSize*x+blockSize/2, blockSize*y+(blockSize/2)-12100])
                          
                 #if c == '_':
                     #Block("Pictures/Blocks, and background/Crates/plank.png", 
-                         #[blockSize*x+blockSize/2,blockSize*y+(blockSize/2)-11900])
+                         #[blockSize*x+blockSize/2, blockSize*y+(blockSize/2)-11900])
                          
                 if c == '@':
-                    Player(["Pictures/Player/Biplane.png"], [100, 200])
-                         #[blockSize*x+blockSize/2,blockSize*y+(blockSize/2)-12100])
+                    Player(["Pictures/Player/Biplane.png"],
+                         [blockSize*x+blockSize/2, 300])#blockSize*y+(blockSize/2)-12300])
