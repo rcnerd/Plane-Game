@@ -9,13 +9,17 @@ class Player(pygame.sprite.Sprite):
         
         self.images = []
         for image in images:
-            self.images += [pygame.transform.scale(pygame.image.load(image), [50,50])]#[1083/20,524/20])]
+            self.images += [pygame.transform.scale(pygame.image.load(image), [50,25])]#[1083/20,524/20])]
         self.image = self.images[0]
         self.rect = self.image.get_rect(center = pos)
+        print pos, self.rect
         
         self.frame = 0
         self.maxFrame = len(self.images)-1
         self.timer = 0
         self.timerMax = .25* 60
         
-        self.rect = self.rect.move(pos)
+        #self.rect = self.rect.move(pos)
+    
+    def staticMove(self):
+        self.rect = self.rect.move(self.speed)

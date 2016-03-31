@@ -48,5 +48,5 @@ class Level():
                          #[blockSize*x+blockSize/2, blockSize*y+(blockSize/2)-11900])
                          
                 if c == '@':
-                    Player(["Pictures/Player/Biplane.png"],
-                         [blockSize*x+blockSize/2, 300])#blockSize*y+(blockSize/2)-12300])
+                    self.player = Player(["Pictures/Player/Biplane.png"],
+                            [blockSize*x+blockSize/2, blockSize*y+(blockSize/2)-12100+12])
