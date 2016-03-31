@@ -33,7 +33,7 @@ Player.containers = (players, all)
 #Wall.containers = (boundries, all)
 #PlayerBall.containers = (players, all)
 
-level = Level("Levels\level1.layout")
+level = Level("Levels/Level1.layout")
 
 #player = level.player
 
