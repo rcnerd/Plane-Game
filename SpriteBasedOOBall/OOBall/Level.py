@@ -36,7 +36,7 @@ class Level():
                 if c == 'o':
                     if ballCount < ballMax:
                         if random.randint(1, ballOdds) == 1:
-                            Ball(["ball.png"], [5,5], [25*x+12,25*y+12])
+                            Ball(["ball.png"], [3,3], [25*x+12,25*y+12])
                 
                 if c == '@':
                     self.player = PlayerBall("pBall.png",[6,6],[25*x+12,25*y+12])

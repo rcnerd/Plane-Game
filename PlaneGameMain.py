@@ -25,11 +25,11 @@ gamePeices = pygame.sprite.Group()
 boosters = pygame.sprite.Group()
 coins = pygame.sprite.Group()
 spikes = pygame.sprite.Group()
-Players = pygame.sprite.Group()
+players = pygame.sprite.Group()
 all = pygame.sprite.OrderedUpdates()
 
 Block.containers = (blocks, all)
-Player.containers = (Players, all)
+Player.containers = (players, all)
 #Wall.containers = (boundries, all)
 #PlayerBall.containers = (players, all)
 
