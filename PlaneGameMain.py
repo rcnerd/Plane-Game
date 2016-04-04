@@ -56,7 +56,7 @@ while True:
             player.speed = [0,3]#[3,3]
             gamePieceSpeed = [3,0]
             player.staticMove()
-            gamePieces.playerDynamicMove(gamePieceSpeed)
+            #---->gamePieces.playerDynamicMove(gamePieceSpeed)
             
         elif player.rect.left >= 650 and player.rect.left < 700:
             player.staticTilt(0)
