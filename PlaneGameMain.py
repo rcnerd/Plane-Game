@@ -49,7 +49,21 @@ while True:
         if player.rect.left <  500:
             player.speed = [3,0]
             player.staticMove() 
-        #player.staticTurn(45)
+            
+        elif player.rect.left >= 500 and player.rect.left < 650:
+            player.staticTilt(-45)
+            player.speed = [3,3]
+            player.staticMove()
+            
+        elif player.rect.left >= 650 and player.rect.left < 700:
+            player.staticTilt(0)
+            player.speed = [3,0]
+            player.staticMove()
+            
+        elif player.rect.left >= 700 and player.rect.left < 950:
+            player.staticTilt(45)
+            player.speed = [3,-3]
+            player.staticMove()
         
         
         all.update(size)

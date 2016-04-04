@@ -23,3 +23,6 @@ class Player(pygame.sprite.Sprite):
     
     def staticMove(self):
         self.rect = self.rect.move(self.speed)
+        
+    def staticTilt(self, angle):
+        self.image = pygame.transform.rotate(self. images[0], angle)
