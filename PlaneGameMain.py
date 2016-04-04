@@ -11,7 +11,7 @@ pygame.init()
 
 clock = pygame.time.Clock()
 
-width = 1200 
+width = 1000 
 height = 700
 size = width, height
  
@@ -21,7 +21,7 @@ screen = pygame.display.set_mode(size)
 
 blocks = pygame.sprite.Group()
 buttons = pygame.sprite.Group()
-gamePeices = pygame.sprite.Group()
+gamePieces = pygame.sprite.Group()
 boosters = pygame.sprite.Group()
 coins = pygame.sprite.Group()
 spikes = pygame.sprite.Group()
@@ -29,8 +29,9 @@ players = pygame.sprite.Group()
 all = pygame.sprite.OrderedUpdates()
 
 Block.containers = (blocks, all)
+Block.containers = (gamePieces, all)
 Player.containers = (players, all)
-#Wall.containers = (boundries, all)
+#.containers = (gamePieces, all)
 #PlayerBall.containers = (players, all)
 
 level = Level("Levels/Level1.layout")
@@ -52,8 +53,10 @@ while True:
             
         elif player.rect.left >= 500 and player.rect.left < 650:
             player.staticTilt(-45)
-            player.speed = [3,3]
+            player.speed = [0,3]#[3,3]
+            gamePieceSpeed = [3,0]
             player.staticMove()
+            gamePieces.playerDynamicMove(gamePieceSpeed)
             
         elif player.rect.left >= 650 and player.rect.left < 700:
             player.staticTilt(0)
@@ -70,12 +73,16 @@ while True:
             player.speed = [4,0]
             player.staticMove()
             player.rect.top = 300
+        
+        elif player.rect.left > 1100:
+            startup = False
             
-        print player.rect.top
+        
         
         
         all.update(size)
         
+        print "Startup"
         bgColor = r,g,b
         screen.fill(bgColor)
         dirty = all.draw(screen)
@@ -125,7 +132,7 @@ while True:
             #for ball2 in ballsHitBalls[ball1]:
                 #ball1.collideBall(ball2)
         
-        
+        print "Game"
         bgColor = r,g,b
         screen.fill(bgColor)
         dirty = all.draw(screen)

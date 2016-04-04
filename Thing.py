@@ -10,3 +10,6 @@ class Thing(pygame.sprite.Sprite):
 
     def update(*args):
         pass
+
+    def playerDynamicMove(self, speed = [0,0]):
+        self.rect = self.rect.move(speed)
