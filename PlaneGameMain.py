@@ -11,7 +11,7 @@ pygame.init()
 
 clock = pygame.time.Clock()
 
-width = 1000 
+width = 1200 
 height = 700
 size = width, height
  
@@ -47,7 +47,7 @@ while True:
                 sys.exit()
         
         if player.rect.left <  500:
-            player.speed = [3,0]
+            player.speed = [2,0]
             player.staticMove() 
             
         elif player.rect.left >= 500 and player.rect.left < 650:
@@ -57,13 +57,21 @@ while True:
             
         elif player.rect.left >= 650 and player.rect.left < 700:
             player.staticTilt(0)
-            player.speed = [3,0]
+            player.speed = [4,0]
             player.staticMove()
             
-        elif player.rect.left >= 700 and player.rect.left < 950:
+        elif player.rect.left >= 700 and player.rect.top > 300:
             player.staticTilt(45)
             player.speed = [3,-3]
             player.staticMove()
+            
+        elif player.rect.top <= 300 and player.rect.left < 1100:
+            player.staticTilt(0)
+            player.speed = [4,0]
+            player.staticMove()
+            player.rect.top = 300
+            
+        print player.rect.top
         
         
         all.update(size)
