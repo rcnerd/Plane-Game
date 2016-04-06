@@ -51,17 +51,22 @@ while True:
             player.speed = [2,0]
             player.staticMove() 
             
-        elif player.rect.left >= 500 and player.rect.left < 650:
+        elif player.rect.left >= 500 and player.rect.bottom < 600:
             player.staticTilt(-45)
-            player.speed = [0,3]#[3,3]
-            gamePieceSpeed = [3,0]
+            player.speed = [0,3]#vertish[3,3]
+            gamePieceSpeed = [-3,0]
             player.staticMove()
-            #---->gamePieces.playerDynamicMove(gamePieceSpeed)
+            for c in gamePieces:
+                c.playerDynamicMove(gamePieceSpeed)
             
-        elif player.rect.left >= 650 and player.rect.left < 700:
+            
+        elif player.rect.bottom >= 600 and player.vertPos < [700,0]:
             player.staticTilt(0)
-            player.speed = [4,0]
-            player.staticMove()
+            player.vertSpeed = [4,0]
+            gamePieceSpeed = [-4,0]
+            player.vertPos += player.vertSpeed
+            for c in gamePieces:
+                c.playerDynamicMove(gamePieceSpeed)
             
         elif player.rect.left >= 700 and player.rect.top > 300:
             player.staticTilt(45)
@@ -82,7 +87,10 @@ while True:
         
         all.update(size)
         
-        print "Startup"
+        print player.vertPos, player.vertSpeed
+        print "Startup", player.rect.bottom
+        #print blocks[0].rect.left
+        
         bgColor = r,g,b
         screen.fill(bgColor)
         dirty = all.draw(screen)
