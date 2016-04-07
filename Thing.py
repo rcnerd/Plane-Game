@@ -7,9 +7,15 @@ class Thing(pygame.sprite.Sprite):
         self.image = pygame.image.load(image)
         self.image = pygame.transform.scale(self.image, [50,50])
         self.rect = self.image.get_rect(center = pos)
+        
+        self.speed = 0
 
     def update(*args):
-        pass
+        self = args[0]
+        playerSpeed = args[1]
+        playerStatic = args[2]
+        
+        
 
-    def playerDynamicMove(self, speed = [0,0]):
-        self.rect = self.rect.move(speed)
+    def move(self):
+        self.rect = self.rect.move(self.speed)

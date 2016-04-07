@@ -47,36 +47,35 @@ while True:
             if event.type == pygame.QUIT: 
                 sys.exit()
         
+        #foward
         if player.rect.left <  500:
             player.speed = [2,0]
             player.staticMove() 
-            
+        
+        #tip down start scroll    
         elif player.rect.left >= 500 and player.rect.bottom < 600:
             player.staticTilt(-45)
-            player.speed = [0,3]#vertish[3,3]
-            gamePieceSpeed = [-3,0]
-            player.staticMove()
-            for c in gamePieces:
-                c.playerDynamicMove(gamePieceSpeed)
+            player.speed = [3,3]#vertish[3,3]
             
-            
+        #foward at bottom    
         elif player.rect.bottom >= 600 and player.vertPos[0] < 75:
             player.staticTilt(0)
             player.vertSpeed = [4,0]
             gamePieceSpeed = [-4,0]
-            player.vertPos[0] += player.vertSpeed[0]
-            player.vertPos[1] += player.vertSpeed[1]
+            player.virtPos[0] += player.virtSpeed[0]
+            player.virtPos[1] += player.virtSpeed[1]
             for c in gamePieces:
                 c.playerDynamicMove(gamePieceSpeed)
             
-        #elif player.vertPos[0] >= 75 and player.rect.top > 300:
+        elif player.vertPos[0] >= 75 and player.rect.top > 300:
             player.staticTilt(45)
             player.speed = [0,-3]
             player.vertSpeed = [3,-3]
             gamePieceSpeed = [-3,0]
-            player.vertPos[0] += player.vertSpeed[0]
-            player.vertPos[1] += player.vertSpeed[1]
+            player.virtPos[0] += player.virtSpeed[0]
+            player.virtPos[1] += player.virtSpeed[1]
             player.staticMove()
+            print "up!"
             for c in gamePieces:
                 c.playerDynamicMove(gamePieceSpeed)
             
@@ -92,8 +91,11 @@ while True:
         
         
         
-        all.update(size)
+        all.update(size,
+                player.speed,
+                player.didStaticMove)
         
+        print player.vertPos[0] < 70
         print player.vertPos, player.vertSpeed
         print "Startup", player.rect.bottom
         #print blocks[0].rect.left

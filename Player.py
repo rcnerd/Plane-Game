@@ -6,8 +6,8 @@ class Player(pygame.sprite.Sprite):
         self.speedx = speed[0]
         self.speedy = speed[1]
         self.speed = [self.speedx, self.speedy]
-        self.vertPos = [0,0]
-        self.vertSpeed = [0,0]
+        self.virtPos = [0,0]
+        self.virtSpeed = [0,0]
         
         self.images = []
         for image in images:
@@ -22,9 +22,18 @@ class Player(pygame.sprite.Sprite):
         self.timerMax = .25* 60
         
         #self.rect = self.rect.move(pos)
+        didStaticMove = False
     
     def staticMove(self):
         self.rect = self.rect.move(self.speed)
-        
+        didStaticMove = True
+
     def staticTilt(self, angle):
-        self.image = pygame.transform.rotate(self. images[0], angle)
+        self.image = pygame.transform.rotate(self.images[0], angle)
+        
+    def update(*args):
+        self = args[0]
+        didStaticMove = False
+
+    def move(self):
+        pass
