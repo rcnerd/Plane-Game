@@ -60,18 +60,25 @@ while True:
                 c.playerDynamicMove(gamePieceSpeed)
             
             
-        elif player.rect.bottom >= 600 and player.vertPos < [700,0]:
+        elif player.rect.bottom >= 600 and player.vertPos[0] < 75:
             player.staticTilt(0)
             player.vertSpeed = [4,0]
             gamePieceSpeed = [-4,0]
-            player.vertPos += player.vertSpeed
+            player.vertPos[0] += player.vertSpeed[0]
+            player.vertPos[1] += player.vertSpeed[1]
             for c in gamePieces:
                 c.playerDynamicMove(gamePieceSpeed)
             
-        elif player.rect.left >= 700 and player.rect.top > 300:
+        #elif player.vertPos[0] >= 75 and player.rect.top > 300:
             player.staticTilt(45)
-            player.speed = [3,-3]
+            player.speed = [0,-3]
+            player.vertSpeed = [3,-3]
+            gamePieceSpeed = [-3,0]
+            player.vertPos[0] += player.vertSpeed[0]
+            player.vertPos[1] += player.vertSpeed[1]
             player.staticMove()
+            for c in gamePieces:
+                c.playerDynamicMove(gamePieceSpeed)
             
         elif player.rect.top <= 300 and player.rect.left < 1100:
             player.staticTilt(0)
