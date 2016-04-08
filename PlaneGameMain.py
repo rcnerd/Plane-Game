@@ -60,17 +60,17 @@ while True:
         #foward at bottom    
         elif player.rect.bottom >= 600 and player.vertPos[0] < 75:
             player.staticTilt(0)
-            player.vertSpeed = [4,0]
+            player.virtSpeed = [4,0]
             gamePieceSpeed = [-4,0]
             player.virtPos[0] += player.virtSpeed[0]
             player.virtPos[1] += player.virtSpeed[1]
             for c in gamePieces:
                 c.playerDynamicMove(gamePieceSpeed)
             
-        elif player.vertPos[0] >= 75 and player.rect.top > 300:
+        elif player.virtPos[0] >= 75 and player.rect.top > 300:
             player.staticTilt(45)
             player.speed = [0,-3]
-            player.vertSpeed = [3,-3]
+            player.virtSpeed = [3,-3]
             gamePieceSpeed = [-3,0]
             player.virtPos[0] += player.virtSpeed[0]
             player.virtPos[1] += player.virtSpeed[1]
@@ -95,8 +95,8 @@ while True:
                 player.speed,
                 player.didStaticMove)
         
-        print player.vertPos[0] < 70
-        print player.vertPos, player.vertSpeed
+        print player.virtPos[0] < 70
+        print player.virtPos, player.virtSpeed
         print "Startup", player.rect.bottom
         #print blocks[0].rect.left
         
