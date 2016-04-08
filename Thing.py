@@ -8,13 +8,15 @@ class Thing(pygame.sprite.Sprite):
         self.image = pygame.transform.scale(self.image, [50,50])
         self.rect = self.image.get_rect(center = pos)
         
-        self.speed = 0
+        self.speed = [0,0]
 
     def update(*args):
         self = args[0]
         playerSpeed = args[1]
         playerStatic = args[2] #game not happy with this line
-        
+        self.speed[0] = -playerSpeed[0]
+        self.speed[1] = -playerSpeed[1]
+        self.move()
         
 
     def move(self):

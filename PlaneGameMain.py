@@ -39,7 +39,7 @@ level = Level("Levels/Level1.layout")
 player = level.player
 print player.rect.center, player.rect
 
-startup = False
+startup = True
 
 
 while True:
@@ -62,32 +62,29 @@ while True:
         elif player.rect.bottom >= 600 and player.vertPos[0] < 75:
             player.staticTilt(0)
             player.virtSpeed = [4,0]
-            gamePieceSpeed = [-4,0]
             player.virtPos[0] += player.virtSpeed[0]
             player.virtPos[1] += player.virtSpeed[1]
-            for c in gamePieces:
-                c.playerDynamicMove(gamePieceSpeed)
             
-        elif player.virtPos[0] >= 75 and player.rect.top > 300:
-            player.staticTilt(45)
-            player.speed = [0,-3]
-            player.virtSpeed = [3,-3]
-            gamePieceSpeed = [-3,0]
-            player.virtPos[0] += player.virtSpeed[0]
-            player.virtPos[1] += player.virtSpeed[1]
-            player.staticMove()
-            print "up!"
-            for c in gamePieces:
-                c.playerDynamicMove(gamePieceSpeed)
+        #elif player.virtPos[0] >= 75 and player.rect.top > 300:
+            #player.staticTilt(45)
+            #player.speed = [0,-3]
+            #player.virtSpeed = [3,-3]
+            #gamePieceSpeed = [-3,0]
+            #player.virtPos[0] += player.virtSpeed[0]
+            #player.virtPos[1] += player.virtSpeed[1]
+            #player.staticMove()
+            #print "up!"
+            #for c in gamePieces:
+                #c.playerDynamicMove(gamePieceSpeed)
             
-        elif player.rect.top <= 300 and player.rect.left < 1100:
-            player.staticTilt(0)
-            player.speed = [4,0]
-            player.staticMove()
-            player.rect.top = 300
+        #elif player.rect.top <= 300 and player.rect.left < 1100:
+            #player.staticTilt(0)
+            #player.speed = [4,0]
+            #player.staticMove()
+            #player.rect.top = 300
         
-        elif player.rect.left > 1100:
-            startup = False
+        #elif player.rect.left > 1100:
+            #startup = False
             
         
         
@@ -99,7 +96,8 @@ while True:
         print player.virtPos[0] < 70
         print player.virtPos, player.virtSpeed
         print "Startup", player.rect.bottom
-        #print blocks[0].rect.left
+        for c in gamePieces:
+                print c.rect.center
         
         bgColor = r,g,b
         screen.fill(bgColor)
