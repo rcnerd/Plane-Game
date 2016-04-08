@@ -13,7 +13,7 @@ class Thing(pygame.sprite.Sprite):
     def update(*args):
         self = args[0]
         playerSpeed = args[1]
-        playerStatic = args[2]
+        playerStatic = args[2] #game not happy with this line
         
         
 

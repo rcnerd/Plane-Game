@@ -39,7 +39,8 @@ level = Level("Levels/Level1.layout")
 player = level.player
 print player.rect.center, player.rect
 
-startup = True
+startup = False
+
 
 while True:
     while startup:
