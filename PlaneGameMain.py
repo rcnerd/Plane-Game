@@ -39,7 +39,7 @@ level = Level("Levels/Level1.layout")
 player = level.player
 print player.rect.center, player.rect
 
-startup = True
+startup = False
 
 
 while True:
@@ -97,7 +97,8 @@ while True:
         print player.virtPos, player.virtSpeed
         print "Startup", player.rect.bottom
         for c in gamePieces:
-                print c.rect.center
+            pass
+            #print c.rect.center
         
         bgColor = r,g,b
         screen.fill(bgColor)
@@ -106,24 +107,30 @@ while True:
         pygame.display.flip()
         clock.tick(60)
 
+    player.speed = [4,0]
+    player.place([width/2, height/2])
     while not startup:
         for event in pygame.event.get():
             if event.type == pygame.QUIT: 
                 sys.exit()
-            #elif event.type == pygame.KEYDOWN:
-                #if event.key == pygame.K_UP:
-                    #player.go("up")
-                #elif event.key == pygame.K_DOWN:
-                    #player.go("down")
+            elif event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_UP:
+                    player.staticTilt(45/2)
+                    player.speed = [4 , -2]
+                elif event.key == pygame.K_DOWN:
+                    player.staticTilt(-45/2)
+                    player.speed = [4 , 2]
                 #elif event.key == pygame.K_LEFT:
                     #player.go("left")
                 #elif event.key == pygame.K_RIGHT:
                     #player.go("right")
-            #elif event.type == pygame.KEYUP:
-                #if event.key == pygame.K_UP:
-                    #player.go("stop up")
-                #elif event.key == pygame.K_DOWN:
-                    #player.go("stop down")
+            elif event.type == pygame.KEYUP:
+                if event.key == pygame.K_UP:
+                    player.staticTilt(0)
+                    player.speed = [4 , 0]
+                elif event.key == pygame.K_DOWN:
+                    player.staticTilt(0)
+                    player.speed = [4 , 0]
                 #elif event.key == pygame.K_LEFT:
                     #player.go("stop left")
                 #elif event.key == pygame.K_RIGHT:
@@ -132,6 +139,7 @@ while True:
         all.update(size,
                 player.speed,
                 player.didStaticMove)
+        #raw_input("> ")
         
         #playersHitBalls = pygame.sprite.groupcollide(players, balls, False, True)
         #playersHitBoundries = pygame.sprite.groupcollide(players, boundries, False, False)

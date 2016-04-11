@@ -35,5 +35,8 @@ class Player(pygame.sprite.Sprite):
         self = args[0]
         self.didStaticMove = False
 
+    def place(self, pos):
+        self.rect.center = pos
+        
     def move(self):
         pass
