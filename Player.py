@@ -50,5 +50,6 @@ class Player(pygame.sprite.Sprite):
             #self.didBounceX = True
             self.didBounceY = True
             #self.speedx = -self.speedx
-            player.staticTilt(0)
-            player.speed = [4 , 0]
+            self.staticTilt(0)
+            self.speed = [4 , 0]
+            print "done hit somt'n!"

@@ -35,6 +35,9 @@ class Level():
                 if c == '#':
                     Block("Pictures/Blocks, and background/Crates/obj_crate002.png", 
                          [blockSize*x+blockSize/2, blockSize*y+(blockSize/2)-12100])
+                if c == 'N':
+                    BigBlock("Pictures/Blocks, and background/Crates/obj_crate002.png", 
+                         [blockSize*x+blockSize/2, blockSize*y+(blockSize/2)-12100])
                 if c == 'A':
                     Block("Pictures/Blocks, and background/Crates/slope.png", 
                          [blockSize*x+blockSize/2, blockSize*y+(blockSize/2)-12100])

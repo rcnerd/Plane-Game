@@ -28,13 +28,14 @@ spikes = pygame.sprite.Group()
 players = pygame.sprite.Group()
 all = pygame.sprite.OrderedUpdates()
 
-Block.containers = (blocks, all)
-Block.containers = (gamePieces, all)
+Block.containers = (blocks, gamePieces, all)
 Player.containers = (players, all)
 #.containers = (gamePieces, all)
 #PlayerBall.containers = (players, all)
 
 level = Level("Levels/Level1.layout")
+
+print len(all.sprites())
 
 player = level.player
 print player.rect.center, player.rect
@@ -146,7 +147,7 @@ while True:
         
         for p in playersHitBlocks:
             for block in playersHitBlocks[p]:
-                p.collideBlock(Block)
+                p.collideBlock(block)
         
         #for ball in ballsHitBoundries:
             #for boundry in ballsHitBoundries[ball]:
