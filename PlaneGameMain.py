@@ -147,7 +147,11 @@ while True:
         
         for p in playersHitBlocks:
             for block in playersHitBlocks[p]:
-                p.collideBlock(block)
+                if p.collideBlock(block):
+                    all.update(size,
+                        player.speed,
+                        player.didStaticMove)
+                    player.speed = [4,0]
         
         #for ball in ballsHitBoundries:
             #for boundry in ballsHitBoundries[ball]:
