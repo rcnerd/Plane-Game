@@ -136,19 +136,17 @@ while True:
                 #elif event.key == pygame.K_RIGHT:
                     #player.go("stop right")
         
-        all.update(size,
-                player.speed,
-                player.didStaticMove)
+
         #raw_input("> ")
         
         #playersHitBalls = pygame.sprite.groupcollide(players, balls, False, True)
-        #playersHitBoundries = pygame.sprite.groupcollide(players, boundries, False, False)
+        playersHitBlocks = pygame.sprite.groupcollide(players, blocks, False, False)
         #ballsHitBoundries = pygame.sprite.groupcollide(balls, boundries, False, False)
         #ballsHitBalls = pygame.sprite.groupcollide(balls, balls, False, False)
         
-        #for p in playersHitBoundries:
-            #for boundry in playersHitBoundries[p]:
-                #p.collideBoundry(boundry)
+        for p in playersHitBlocks:
+            for block in playersHitBlocks[p]:
+                p.collideBlock(Block)
         
         #for ball in ballsHitBoundries:
             #for boundry in ballsHitBoundries[ball]:
@@ -158,7 +156,10 @@ while True:
             #for ball2 in ballsHitBalls[ball1]:
                 #ball1.collideBall(ball2)
         
-        
+        all.update(size,
+                player.speed,
+                player.didStaticMove)
+                
         bgColor = r,g,b
         screen.fill(bgColor)
         dirty = all.draw(screen)

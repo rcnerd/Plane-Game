@@ -23,6 +23,9 @@ class Player(pygame.sprite.Sprite):
         
         #self.rect = self.rect.move(pos)
         self.didStaticMove = False
+        
+        self.didBounceX = False
+        self.didBounceY = False
     
     def staticMove(self):
         self.rect = self.rect.move(self.speed)
@@ -34,9 +37,18 @@ class Player(pygame.sprite.Sprite):
     def update(*args):
         self = args[0]
         self.didStaticMove = False
+        self.didBounceY = False
 
     def place(self, pos):
         self.rect.center = pos
         
     def move(self):
         pass
+    
+    def collideBlock(self, other):
+        if self.rect.bottom > other.rect.top and self.rect.top < other.rect.bottom:
+            #self.didBounceX = True
+            self.didBounceY = True
+            #self.speedx = -self.speedx
+            player.staticTilt(0)
+            player.speed = [4 , 0]
