@@ -33,21 +33,21 @@ class Level():
         for y, line in enumerate(lines):
             for x, c in enumerate(line):
                 if c == '#':
-                    Block("Pictures/Blocks, and background/Crates/obj_crate002.png", 
+                    Block("Pictures/Blocks, and background/Crates/obj_crate002.png", "#",
                          [blockSize*x+blockSize/2, blockSize*y+(blockSize/2)-12100])
                 if c == 'N':
-                    BigBlock("Pictures/Blocks, and background/Crates/obj_crate002.png", 
+                    BigBlock("Pictures/Blocks, and background/Crates/obj_crate002.png", "N",
                          [blockSize*x+blockSize/2, blockSize*y+(blockSize/2)-12100])
                 if c == 'A':
-                    Block("Pictures/Blocks, and background/Crates/slope.png", 
+                    Block("Pictures/Blocks, and background/Crates/slope.png", "A",
                          [blockSize*x+blockSize/2, blockSize*y+(blockSize/2)-12100])
                 
                 if c == '/':
-                    Block("Pictures/Blocks, and background/Crates/ramp.png", 
+                    Block("Pictures/Blocks, and background/Crates/ramp.png", "/",
                          [blockSize*x+blockSize/2, blockSize*y+(blockSize/2)-12100])
                          
                 if c == 'T':
-                    Block("Pictures/Blocks, and background/Crates/topPlank.png", 
+                    Block("Pictures/Blocks, and background/Crates/plank.png", "T",
                          [blockSize*x+blockSize/2, blockSize*y+(blockSize/2)-11900])
                          
                 if c == '@':

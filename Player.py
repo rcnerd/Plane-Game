@@ -51,6 +51,10 @@ class Player(pygame.sprite.Sprite):
             self.didBounceY = True
             #self.speedx = -self.speedx
             self.staticTilt(0)
-            self.speed = [4 , -1]
+            print other.image
+            if other.symbol == "T":
+                self.speed = [4,1]
+            else:
+                self.speed = [4,-1]
             return True
             
