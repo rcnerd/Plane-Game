@@ -46,9 +46,9 @@ class Level():
                     Block("Pictures/Blocks, and background/Crates/ramp.png", "/",
                          [blockSize*x+blockSize/2, blockSize*y+(blockSize/2)-12100])
                          
-                if c == 'T':
-                    Block("Pictures/Blocks, and background/Crates/plank.png", "T",
-                         [blockSize*x+blockSize/2, blockSize*y+(blockSize/2)-11900])
+                if c == '_':
+                    Block("Pictures/Blocks, and background/Crates/plank.png", "_",
+                         [blockSize*x+blockSize/2, blockSize*y+(blockSize/2)-12100])
                          
                 if c == '@':
                     self.player = Player(["Pictures/Player/Biplane.png"],

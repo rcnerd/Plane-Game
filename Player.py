@@ -52,9 +52,9 @@ class Player(pygame.sprite.Sprite):
             #self.speedx = -self.speedx
             self.staticTilt(0)
             print other.image
-            if other.symbol == "T":
-                self.speed = [4,1]
+            if other.symbol == "_":
+                self.speed = [0,1]
             else:
-                self.speed = [4,-1]
+                self.speed = [0,-1]
             return True
             
