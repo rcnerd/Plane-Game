@@ -50,6 +50,19 @@ class Level():
                     Block("Pictures/Blocks, and background/Crates/plank.png", "_",
                          [blockSize*x+blockSize/2, blockSize*y+(blockSize/2)-12100])
                          
+                #if c == ' ':
+                    #g = random.randint(0, 100)
+                    
+                    #if g == 0:
+                        #Block("Pictures/Game pieces/GoldCoinSprite/GoldCoinSprite/Coin1.png", "0",
+                     #[blockSize*x+blockSize/2, blockSize*y+(blockSize/2)-12100])
+                    #if g == 1:
+                        #Block("Pictures/Blocks, and background/Crates/obj_crate002.png", "!",
+                     #[blockSize*x+blockSize/2, blockSize*y+(blockSize/2)-12100])
+                    #if g == 2:
+                        #Block("Pictures/Blocks, and background/Crates/obj_crate002.png", "^",
+                     #[blockSize*x+blockSize/2, blockSize*y+(blockSize/2)-12100])
+                         
                 if c == '@':
                     self.player = Player(["Pictures/Player/Biplane.png"],
                             [blockSize*x+blockSize/2, blockSize*y+(blockSize/2)-12100+12])
