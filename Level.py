@@ -35,34 +35,21 @@ class Level():
                 if c == '#':
                     Block("Pictures/Blocks, and background/Crates/obj_crate002.png", "#",
                          [blockSize*x+blockSize/2, blockSize*y+(blockSize/2)-12100])
-                if c == 'N':
+                elif c == 'N':
                     BigBlock("Pictures/Blocks, and background/Crates/obj_crate002.png", "N",
                          [blockSize*x+blockSize/2, blockSize*y+(blockSize/2)-12100])
-                if c == 'A':
+                elif c == 'A':
                     Block("Pictures/Blocks, and background/Crates/slope.png", "A",
                          [blockSize*x+blockSize/2, blockSize*y+(blockSize/2)-12100])
                 
-                if c == '/':
+                elif c == '/':
                     Block("Pictures/Blocks, and background/Crates/ramp.png", "/",
                          [blockSize*x+blockSize/2, blockSize*y+(blockSize/2)-12100])
                          
-                if c == '_':
+                elif c == '_':
                     Block("Pictures/Blocks, and background/Crates/plank.png", "_",
                          [blockSize*x+blockSize/2, blockSize*y+(blockSize/2)-12100])
                          
-                #if c == ' ':
-                    #g = random.randint(0, 100)
-                    
-                    #if g == 0:
-                        #Block("Pictures/Game pieces/GoldCoinSprite/GoldCoinSprite/Coin1.png", "0",
-                     #[blockSize*x+blockSize/2, blockSize*y+(blockSize/2)-12100])
-                    #if g == 1:
-                        #Block("Pictures/Blocks, and background/Crates/obj_crate002.png", "!",
-                     #[blockSize*x+blockSize/2, blockSize*y+(blockSize/2)-12100])
-                    #if g == 2:
-                        #Block("Pictures/Blocks, and background/Crates/obj_crate002.png", "^",
-                     #[blockSize*x+blockSize/2, blockSize*y+(blockSize/2)-12100])
-                         
-                if c == '@':
+                elif c == '@':
                     self.player = Player(["Pictures/Player/Biplane.png"],
                             [blockSize*x+blockSize/2, blockSize*y+(blockSize/2)-12100+12])

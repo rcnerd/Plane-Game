@@ -137,7 +137,18 @@ while True:
                 #elif event.key == pygame.K_RIGHT:
                     #player.go("stop right")
         
-
+        for y in range(75, 255*50, 50):
+            gamePiece = random.randint(0, 100)
+            if gamePiece == 0:
+                Block("Pictures/Game pieces/GoldCoinSprite/GoldCoinSprite/Coin1.png", "0",
+                        [1100, y])
+                #print center of last game piece added
+            if gamePiece == 1:
+                Block("Pictures/Blocks, and background/Crates/obj_crate002.png", "!",
+                        [1100, y])
+            if gamePiece == 2:
+                Block("Pictures/Blocks, and background/Crates/obj_crate002.png", "^",
+                        [1100, y])
         #raw_input("> ")
         
         #playersHitBalls = pygame.sprite.groupcollide(players, balls, False, True)
@@ -171,6 +182,7 @@ while True:
         pygame.display.update(dirty)
         pygame.display.flip()
         clock.tick(60)
+        print clock.get_fps(), len(all.sprites())
 
 
 
