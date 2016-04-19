@@ -56,5 +56,7 @@ class Player(pygame.sprite.Sprite):
                 self.speed = [0,1]
             elif other.symbol == "#":
                 self.speed = [0,-1]
+            else:
+                pass
             return True
             

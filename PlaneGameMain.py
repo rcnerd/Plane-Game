@@ -42,6 +42,8 @@ print player.rect.center, player.rect
 
 startup = False
 
+gameX = 25
+gameY = 0
 
 while True:
     while startup:
@@ -108,7 +110,7 @@ while True:
         pygame.display.flip()
         clock.tick(60)
 
-    player.speed = [4,0]
+    player.speed = [5,0]
     player.place([width/2, height/2])
     while not startup:
         for event in pygame.event.get():
@@ -117,10 +119,10 @@ while True:
             elif event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_UP:
                     player.staticTilt(45/2)
-                    player.speed = [4 , -2]
+                    player.speed = [5 , -2]
                 elif event.key == pygame.K_DOWN:
                     player.staticTilt(-45/2)
-                    player.speed = [4 , 2]
+                    player.speed = [5 , 2]
                 #elif event.key == pygame.K_LEFT:
                     #player.go("left")
                 #elif event.key == pygame.K_RIGHT:
@@ -128,27 +130,28 @@ while True:
             elif event.type == pygame.KEYUP:
                 if event.key == pygame.K_UP:
                     player.staticTilt(0)
-                    player.speed = [4 , 0]
+                    player.speed = [5 , 0]
                 elif event.key == pygame.K_DOWN:
                     player.staticTilt(0)
-                    player.speed = [4 , 0]
+                    player.speed = [5 , 0]
                 #elif event.key == pygame.K_LEFT:
                     #player.go("stop left")
                 #elif event.key == pygame.K_RIGHT:
                     #player.go("stop right")
-        
-        for y in range(75, 255*50, 50):
-            gamePiece = random.randint(0, 100)
-            if gamePiece == 0:
-                Block("Pictures/Game pieces/GoldCoinSprite/GoldCoinSprite/Coin1.png", "0",
-                        [1100, y])
-                #print center of last game piece added
-            if gamePiece == 1:
-                Block("Pictures/Blocks, and background/Crates/obj_crate002.png", "!",
-                        [1100, y])
-            if gamePiece == 2:
-                Block("Pictures/Blocks, and background/Crates/obj_crate002.png", "^",
-                        [1100, y])
+        print gameX
+        if gameX%50 == 0:
+            for y in range(75, 254*50, 50):
+                gamePiece = random.randint(0, 100)
+                if gamePiece == 0:
+                    Block("Pictures/Game pieces/GoldCoinSprite/GoldCoinSprite/Coin1.png", "0",
+                            [1100, y+gameY])
+                elif gamePiece == 1:
+                    Block("Pictures/Blocks, and background/Crates/obj_crate002.png", "!",
+                            [1100, y+gameY])
+                elif gamePiece == 2:
+                    Block("Pictures/Blocks, and background/Crates/obj_crate002.png", "^",
+                            [1100, y+gameY])
+                if gamePiece <= 2: print all.sprites()[-1].rect.center, y, gamePiece
         #raw_input("> ")
         
         #playersHitBalls = pygame.sprite.groupcollide(players, balls, False, True)
@@ -162,7 +165,7 @@ while True:
                     all.update(size,
                         player.speed,
                         player.didStaticMove)
-                    player.speed = [4,0]
+                    player.speed = [5,0]
         
         #for ball in ballsHitBoundries:
             #for boundry in ballsHitBoundries[ball]:
@@ -170,11 +173,13 @@ while True:
         
         #for ball1 in ballsHitBalls:
             #for ball2 in ballsHitBalls[ball1]:
-                #ball1.collideBall(ball2)
+                #ball1.collideBall(ball2)3
         
         all.update(size,
                 player.speed,
                 player.didStaticMove)
+        gameX += player.speed[0]
+        gameY += player.speed[1]
                 
         bgColor = r,g,b
         screen.fill(bgColor)
