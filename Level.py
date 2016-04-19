@@ -38,6 +38,9 @@ class Level():
                 elif c == 'N':
                     BigBlock("Pictures/Blocks, and background/Crates/obj_crate002.png", "N",
                          [blockSize*x+blockSize/2, blockSize*y+(blockSize/2)-12100])
+                elif c == 'L':
+                    LongBlock("Pictures/Blocks, and background/Crates/obj_crate002.png", "N",
+                         [blockSize*x+blockSize/2, blockSize*y+(blockSize/2)-12100])
                 elif c == 'A':
                     Block("Pictures/Blocks, and background/Crates/slope.png", "A",
                          [blockSize*x+blockSize/2, blockSize*y+(blockSize/2)-12100])

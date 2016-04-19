@@ -30,7 +30,7 @@ all = pygame.sprite.OrderedUpdates()
 
 Block.containers = (blocks, gamePieces, all)
 Player.containers = (players, all)
-#.containers = (gamePieces, all)
+Coin.containers = (coins, gamePieces, all)
 #PlayerBall.containers = (players, all)
 
 level = Level("Levels/Level1.layout")
@@ -43,7 +43,7 @@ print player.rect.center, player.rect
 startup = False
 
 gameX = 25
-gameY = 0
+#gameY = 0
 
 while True:
     while startup:
@@ -138,19 +138,18 @@ while True:
                     #player.go("stop left")
                 #elif event.key == pygame.K_RIGHT:
                     #player.go("stop right")
-        print gameX
         if gameX%50 == 0:
             for y in range(75, 254*50, 50):
                 gamePiece = random.randint(0, 100)
                 if gamePiece == 0:
-                    Block("Pictures/Game pieces/GoldCoinSprite/GoldCoinSprite/Coin1.png", "0",
-                            [1100, y+gameY])
+                    Coin("Pictures/Game pieces/GoldCoinSprite/GoldCoinSprite/Coin1.png", "0",
+                            [1100, y])#+gameY])
                 elif gamePiece == 1:
                     Block("Pictures/Blocks, and background/Crates/obj_crate002.png", "!",
-                            [1100, y+gameY])
+                            [1100, y])#+gameY])
                 elif gamePiece == 2:
                     Block("Pictures/Blocks, and background/Crates/obj_crate002.png", "^",
-                            [1100, y+gameY])
+                            [1100, y])#+gameY])
                 if gamePiece <= 2: print all.sprites()[-1].rect.center, y, gamePiece
         #raw_input("> ")
         
@@ -179,8 +178,7 @@ while True:
                 player.speed,
                 player.didStaticMove)
         gameX += player.speed[0]
-        gameY += player.speed[1]
-                
+        #gameY += player.speed[1]
         bgColor = r,g,b
         screen.fill(bgColor)
         dirty = all.draw(screen)

@@ -13,3 +13,11 @@ class BigBlock(Block):
         self.blockSize = [50*9,50*9]
         self.image = pygame.transform.scale(self.image, self.blockSize)
         self.rect = self.image.get_rect(center = pos)
+
+class LongBlock(Block):
+    def __init__(self, image, symbol, pos=[0,0]):
+        Block.__init__(self, image, symbol, pos)
+        self.image = pygame.image.load("Pictures/Blocks, and background/Crates/LongCrate.png")
+        self.blockSize = [50*9,50]
+        self.image = pygame.transform.scale(self.image, self.blockSize)
+        self.rect = self.image.get_rect(center = pos)
