@@ -14,7 +14,7 @@ class Player(pygame.sprite.Sprite):
             self.images += [pygame.transform.scale(pygame.image.load(image), [50,25])]#[1083/20,524/20])]
         self.image = self.images[0]
         self.rect = self.image.get_rect(center = pos)
-        print pos, self.rect
+        #print pos, self.rect
         
         self.frame = 0
         self.maxFrame = len(self.images)-1
@@ -51,7 +51,7 @@ class Player(pygame.sprite.Sprite):
             self.didBounceY = True
             #self.speedx = -self.speedx
             self.staticTilt(0)
-            print other.image
+            #print other.image
             if other.symbol == "_":
                 self.speed = [0,1]
             elif other.symbol == "#":

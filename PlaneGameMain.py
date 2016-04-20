@@ -35,10 +35,10 @@ Coin.containers = (coins, gamePieces, all)
 
 level = Level("Levels/Level1.layout")
 
-print len(all.sprites())
+#print len(all.sprites())
 
 player = level.player
-print player.rect.center, player.rect
+#print player.rect.center, player.rect
 
 startup = False
 
@@ -96,9 +96,9 @@ while True:
                 player.speed,
                 player.didStaticMove)
         
-        print player.virtPos[0] < 70
-        print player.virtPos, player.virtSpeed
-        print "Startup", player.rect.bottom
+        #print player.virtPos[0] < 70
+        #print player.virtPos, player.virtSpeed
+        #print "Startup", player.rect.bottom
         for c in gamePieces:
             pass
             #print c.rect.center
@@ -155,7 +155,7 @@ while True:
                 elif gamePiece == 2:
                     Block("Pictures/Blocks, and background/Crates/obj_crate002.png", "^",
                             [1100, y])#+gameY])
-                if gamePiece <= 2: print all.sprites()[-1].rect.center, y, gamePiece
+                #if gamePiece <= 2: print all.sprites()[-1].rect.center, y, gamePiece
         #raw_input("> ")
         
         #playersHitBalls = pygame.sprite.groupcollide(players, balls, False, True)
@@ -190,7 +190,7 @@ while True:
         pygame.display.update(dirty)
         pygame.display.flip()
         clock.tick(60)
-        print clock.get_fps(), len(all.sprites())
+        #print clock.get_fps(), len(all.sprites())
 
 
 

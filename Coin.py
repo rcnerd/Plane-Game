@@ -9,7 +9,7 @@ class Coin(Thing):
         
         self.images = []
         for image in images:
-            self.images += [pygame.transform.scale(pygame.image.load(image), [20,20])]
+            self.images += [pygame.transform.scale(pygame.image.load(image), [50,50])]
         self.image = self.images[0]
         self.rect = self.image.get_rect()
         self.radius = self.rect.width/2 - 2
