@@ -27,8 +27,8 @@ class Level():
             newlines += [newline]
         lines = newlines
 
-        for line in lines:
-            print line
+        #for line in lines:
+            #print line
             
         for y, line in enumerate(lines):
             for x, c in enumerate(line):

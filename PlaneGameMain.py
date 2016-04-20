@@ -118,22 +118,18 @@ while True:
                 sys.exit()
             elif event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_UP:
-                    player.staticTilt(45/2)
-                    player.speed = [5 , -2]
+                    player.fly("fly up")
                 elif event.key == pygame.K_DOWN:
-                    player.staticTilt(-45/2)
-                    player.speed = [5 , 2]
+                    player.fly("fly down")
                 #elif event.key == pygame.K_LEFT:
                     #player.go("left")
                 #elif event.key == pygame.K_RIGHT:
                     #player.go("right")
             elif event.type == pygame.KEYUP:
                 if event.key == pygame.K_UP:
-                    player.staticTilt(0)
-                    player.speed = [5 , 0]
+                    player.fly("fly straight")
                 elif event.key == pygame.K_DOWN:
-                    player.staticTilt(0)
-                    player.speed = [5 , 0]
+                    player.fly("fly straight")
                 #elif event.key == pygame.K_LEFT:
                     #player.go("stop left")
                 #elif event.key == pygame.K_RIGHT:

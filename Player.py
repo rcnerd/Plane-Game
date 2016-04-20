@@ -42,6 +42,16 @@ class Player(pygame.sprite.Sprite):
     def place(self, pos):
         self.rect.center = pos
         
+    def fly(self, direction):
+        if direction == "fly up":
+            self.staticTilt(45/2)
+            self.speed = [5 , -2]
+        elif direction == "fly down":
+            self.staticTilt(-45/2)
+            self.speed = [5 , 2]
+        elif direction == "fly straight":
+            self.staticTilt(0)
+            self.speed = [5 , 0]
     def move(self):
         pass
     

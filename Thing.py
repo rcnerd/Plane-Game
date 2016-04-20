@@ -22,7 +22,7 @@ class Thing(pygame.sprite.Sprite):
         if self.rect.center[0] < self.blockSize[0]/2*-1 +10: #-1/2 block size so that we r + it is off screen
             self.kill()
             
-        
+
 
     def move(self):
         self.rect = self.rect.move(self.speed)
