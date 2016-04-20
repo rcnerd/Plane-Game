@@ -142,7 +142,12 @@ while True:
             for y in range(75, 254*50, 50):
                 gamePiece = random.randint(0, 100)
                 if gamePiece == 0:
-                    Coin("Pictures/Game pieces/GoldCoinSprite/GoldCoinSprite/Coin1.png", "0",
+                    Coin(["Pictures/Game pieces/GoldCoinSprite/GoldCoinSprite/Coin1.png",
+                            "Pictures/Game pieces/GoldCoinSprite/GoldCoinSprite/Coin2.png",
+                            "Pictures/Game pieces/GoldCoinSprite/GoldCoinSprite/Coin3.png",
+                            "Pictures/Game pieces/GoldCoinSprite/GoldCoinSprite/Coin4.png",
+                            "Pictures/Game pieces/GoldCoinSprite/GoldCoinSprite/Coin5.png",
+                            "Pictures/Game pieces/GoldCoinSprite/GoldCoinSprite/Coin6.png"], "0",
                             [1100, y])#+gameY])
                 elif gamePiece == 1:
                     Block("Pictures/Blocks, and background/Crates/obj_crate002.png", "!",
