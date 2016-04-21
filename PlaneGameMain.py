@@ -134,7 +134,7 @@ while True:
                     #player.go("stop left")
                 #elif event.key == pygame.K_RIGHT:
                     #player.go("stop right")
-        if gameX%50 == 0:
+        if player.virtPos[0]%50 == 0:
             for y in range(75, 254*50, 50):
                 gamePiece = random.randint(0, 100)
                 if gamePiece == 0:
@@ -166,6 +166,7 @@ while True:
                         player.speed,
                         player.didStaticMove)
                     player.speed = [5,0]
+                    print player.virtPos
         
         #for ball in ballsHitBoundries:
             #for boundry in ballsHitBoundries[ball]:
@@ -178,8 +179,7 @@ while True:
         all.update(size,
                 player.speed,
                 player.didStaticMove)
-        gameX += player.speed[0]
-        #gameY += player.speed[1]
+        player.virtPos[0] += player.speed[0]
         bgColor = r,g,b
         screen.fill(bgColor)
         dirty = all.draw(screen)
