@@ -6,7 +6,7 @@ class Player(pygame.sprite.Sprite):
         self.speedx = speed[0]
         self.speedy = speed[1]
         self.speed = [self.speedx, self.speedy]
-        self.virtPos = [0,0]
+        self.virtPos = [25,0]
         self.virtSpeed = [0,0]
         
         self.images = []

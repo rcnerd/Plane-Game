@@ -42,7 +42,7 @@ player = level.player
 
 startup = False
 
-gameX = 25
+
 #gameY = 0
 
 while True:
