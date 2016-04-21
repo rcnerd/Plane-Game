@@ -8,6 +8,9 @@ class Player(pygame.sprite.Sprite):
         self.speed = [self.speedx, self.speedy]
         self.virtPos = [0,0]
         self.virtSpeed = [0,0]
+        self.maxFuelLevel = 100
+        self.fuelLevel = self.maxFuelLevel
+        self.fuelUseRate = self.maxFuelLevel/(15*60) #15 seconds at 60 frames 
         
         self.images = []
         for image in images:
