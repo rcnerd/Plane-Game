@@ -151,7 +151,7 @@ while True:
                 elif gamePiece == 2:
                     Block("Pictures/Blocks, and background/Crates/obj_crate002.png", "^",
                             [1100, y])#+gameY])
-                #if gamePiece <= 2: print all.sprites()[-1].rect.center, y, gamePiece
+                if gamePiece <= 2: print all.sprites()[-1].rect.center, y, gamePiece
         #raw_input("> ")
         
         #playersHitBalls = pygame.sprite.groupcollide(players, balls, False, True)
