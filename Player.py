@@ -26,6 +26,9 @@ class Player(pygame.sprite.Sprite):
         
         self.didBounceX = False
         self.didBounceY = False
+        
+        self.previousSpeed = [0,0]
+        self.previousTilt = 0
     
     def staticMove(self):
         self.rect = self.rect.move(self.speed)
@@ -52,6 +55,8 @@ class Player(pygame.sprite.Sprite):
         elif direction == "fly straight":
             self.staticTilt(0)
             self.speed = [5 , 0]
+        elif direction == "previous":
+            self.speed = self.previousSpeed
     def move(self):
         pass
     
@@ -60,13 +65,20 @@ class Player(pygame.sprite.Sprite):
             #self.didBounceX = True
             self.didBounceY = True
             #self.speedx = -self.speedx
-            self.staticTilt(0)
+            
             #print other.image
             if other.symbol == "_":
+                self.previosSpeed = self.speed
+                #self.previousTilt 
+                self.staticTilt(0)
                 self.speed = [0,1]
+                return True
             elif other.symbol == "#":
+                self.previosSpeed = self.speed
+                self.staticTilt(0)
                 self.speed = [0,-1]
+                return True
             else:
-                pass
-            return True
+                return False
+        
             

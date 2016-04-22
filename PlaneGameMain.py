@@ -113,6 +113,7 @@ while True:
     player.speed = [5,0]
     player.place([width/2, height/2])
     while not startup:
+        print player.virtPos
         for event in pygame.event.get():
             if event.type == pygame.QUIT: 
                 sys.exit()
@@ -134,6 +135,8 @@ while True:
                     #player.go("stop left")
                 #elif event.key == pygame.K_RIGHT:
                     #player.go("stop right")
+            elif not player.didBounceY:
+                player.fly("previous")
         if player.virtPos[0]%50 == 0:
             for y in range(75, 254*50, 50):
                 gamePiece = random.randint(0, 100)
@@ -151,7 +154,7 @@ while True:
                 elif gamePiece == 2:
                     Block("Pictures/Blocks, and background/Crates/obj_crate002.png", "^",
                             [1100, y])#+gameY])
-                if gamePiece <= 2: print all.sprites()[-1].rect.center, y, gamePiece
+                #if gamePiece <= 2: print all.sprites()[-1].rect.center, y, gamePiece
         #raw_input("> ")
         
         #playersHitBalls = pygame.sprite.groupcollide(players, balls, False, True)
@@ -162,11 +165,11 @@ while True:
         for p in playersHitBlocks:
             for block in playersHitBlocks[p]:
                 if p.collideBlock(block):
-                    all.update(size,
-                        player.speed,
-                        player.didStaticMove)
-                    player.speed = [5,0]
-                    print player.virtPos
+                    pass
+                
+                print p.collideBlock(block)
+                
+
         
         #for ball in ballsHitBoundries:
             #for boundry in ballsHitBoundries[ball]:
