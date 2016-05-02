@@ -12,7 +12,6 @@ class Coin(Thing):
             self.images += [pygame.transform.scale(pygame.image.load(image), [50,50])]
         self.image = self.images[0]
         self.rect = self.image.get_rect()
-        self.radius = self.rect.width/2 - 2
         
         self.frame = 0
         self.maxFrame = len(self.images)-1
