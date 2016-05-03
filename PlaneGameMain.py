@@ -117,7 +117,8 @@ while True:
     player.speed = [5,0]
     player.place([width/2, height/2])
     while not startup:
-        print player.virtPos
+        print "Mouse movement pauses the game for some reason..."
+        #print player.virtPos
         for event in pygame.event.get():
             if event.type == pygame.QUIT: 
                 sys.exit()
@@ -152,6 +153,7 @@ while True:
                             "Pictures/Game pieces/GoldCoinSprite/GoldCoinSprite/Coin5.png",
                             "Pictures/Game pieces/GoldCoinSprite/GoldCoinSprite/Coin6.png"], "0",
                             [1100, y])#+gameY])
+                    print "^", [1100, y]
                 elif gamePiece == 1:
                     Block("Pictures/Blocks, and background/Crates/obj_crate002.png", "!",
                             [1100, y])#+gameY])
@@ -173,7 +175,6 @@ while True:
                 
                 print p.collideBlock(block)
                 
-
         
         #for ball in ballsHitBoundries:
             #for boundry in ballsHitBoundries[ball]:

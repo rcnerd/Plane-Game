@@ -1,12 +1,13 @@
 import sys, pygame, math, random
-from Thing import Thing
+#from Thing import Thing
 
-class Coin(Thing):
+class Coin(pygame.sprite.Sprite):
     def __init__(self, images, symbol, pos=[0,0]):
         image = images[0]
-        Thing.__init__(self, image, pos)
+        #Thing.__init__(self, image, pos)
         self.symbol = symbol
-        
+        self.blockSize = [50,50]
+        self.speed = [0,0]
         self.images = []
         for image in images:
             self.images += [pygame.transform.scale(pygame.image.load(image), [50,50])]
@@ -38,3 +39,6 @@ class Coin(Thing):
             else:
                 self.frame = 0
             self.image = self.images[self.frame]
+
+    def move(self):
+        self.rect = self.rect.move(self.speed)
