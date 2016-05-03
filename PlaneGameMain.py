@@ -58,12 +58,16 @@ while True:
         
         #tip down start scroll    
         elif player.rect.left >= 500 and player.rect.bottom < 600:
-            player.staticTilt(-45)
+            self.previousTilt = self.tilt
+            self.tilt = -45
+            player.staticTilt()
             player.speed = [3,3]#vertish[3,3]
             
         #foward at bottom    
         elif player.rect.bottom >= 600 and player.vertPos[0] < 75:
-            player.staticTilt(0)
+            self.previousTilt = self.tilt
+            self.tilt = 0
+            player.staticTilt()
             player.virtSpeed = [4,0]
             player.virtPos[0] += player.virtSpeed[0]
             player.virtPos[1] += player.virtSpeed[1]
@@ -183,6 +187,7 @@ while True:
                 player.speed,
                 player.didStaticMove)
         player.virtPos[0] += player.speed[0]
+        player.virtPos[1] += player.speed[1]
         bgColor = r,g,b
         screen.fill(bgColor)
         dirty = all.draw(screen)
