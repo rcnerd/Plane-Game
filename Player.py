@@ -43,8 +43,11 @@ class Player(pygame.sprite.Sprite):
         
     def update(*args):
         self = args[0]
+        self.staticTilt()
         self.didStaticMove = False
         self.didBounceY = False
+        self.virtPos[0] += self.speed[0]
+        self.virtPos[1] += self.speed[1]
 
     def place(self, pos):
         self.rect.center = pos
@@ -53,22 +56,18 @@ class Player(pygame.sprite.Sprite):
         if direction == "fly up":
             self.previousTilt = self.tilt
             self.tilt = 45/2
-            self.staticTilt()
             self.speed = [5 , -2]
         elif direction == "fly down":
             self.previousTilt = self.tilt
-            self.tilt = -45/2
-            self.staticTilt() 
+            self.tilt = -45/2 
             self.speed = [5 , 2]
         elif direction == "fly straight":
             self.previousTilt = self.tilt
             self.tilt = 0
-            self.staticTilt()
             self.speed = [5 , 0]
         elif direction == "previous":
             self.speed = self.previousSpeed
             self.tilt = self.previousTilt
-            self.staticTilt()
     def move(self):
         pass
     
@@ -80,18 +79,18 @@ class Player(pygame.sprite.Sprite):
             
             #print other.image
             if other.symbol == "_":
-                self.previosSpeed = self.speed
-                self.previousTilt = self.tilt
-                self.tilt = 0
-                self.staticTilt()
-                self.speed = [0,1]
+                self.fly("fly down")
+                #self.previosSpeed = self.speed
+                #self.previousTilt = self.tilt
+                #self.tilt = 0
+                #self.speed = [0,1]
                 return True
             elif other.symbol == "#":
-                self.previosSpeed = self.speed
-                self.previousTilt = self.tilt
-                self.tilt = 0
-                self.staticTilt()
-                self.speed = [0,-1]
+                self.fly("fly up")
+                #self.previosSpeed = self.speed
+                #self.previousTilt = self.tilt
+                #self.tilt = 0
+                #self.speed = [0,-1]
                 return True
             else:
                 return False

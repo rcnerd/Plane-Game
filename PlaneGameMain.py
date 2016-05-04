@@ -41,9 +41,8 @@ player = level.player
 #print player.rect.center, player.rect
 
 startup = False
+arrowKeyPressed = False
 
-
-#gameY = 0
 
 while True:
     while startup:
@@ -117,7 +116,7 @@ while True:
     player.speed = [5,0]
     player.place([width/2, height/2])
     while not startup:
-        print "Mouse movement pauses the game for some reason..."
+        #print "Mouse movement pauses the game for some reason..."
         #print player.virtPos
         for event in pygame.event.get():
             if event.type == pygame.QUIT: 
@@ -125,8 +124,10 @@ while True:
             elif event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_UP:
                     player.fly("fly up")
+                    arrowKeyPressed  = True
                 elif event.key == pygame.K_DOWN:
                     player.fly("fly down")
+                    arrowKeyPressed  = True
                 #elif event.key == pygame.K_LEFT:
                     #player.go("left")
                 #elif event.key == pygame.K_RIGHT:
@@ -134,14 +135,20 @@ while True:
             elif event.type == pygame.KEYUP:
                 if event.key == pygame.K_UP:
                     player.fly("fly straight")
+                    arrowKeyPressed  = True
                 elif event.key == pygame.K_DOWN:
                     player.fly("fly straight")
+                    arrowKeyPressed  = True
                 #elif event.key == pygame.K_LEFT:
                     #player.go("stop left")
                 #elif event.key == pygame.K_RIGHT:
                     #player.go("stop right")
-            elif not player.didBounceY:
-                player.fly("previous")
+            #elif not player.didBounceY:
+                #player.fly("previous")
+        #if not arrowKeyPressed:
+            #if not player.didBounceY:
+                #player.fly("previous")
+                
         if player.virtPos[0]%50 == 0:
             for y in range(75, 254*50, 50):
                 gamePiece = random.randint(0, 100)
@@ -153,7 +160,7 @@ while True:
                             "Pictures/Game pieces/GoldCoinSprite/GoldCoinSprite/Coin5.png",
                             "Pictures/Game pieces/GoldCoinSprite/GoldCoinSprite/Coin6.png"], "0",
                             [1100, y])#+gameY])
-                    print "^", [1100, y]
+                    #print "^", [1100, y]
                 elif gamePiece == 1:
                     Block("Pictures/Blocks, and background/Crates/obj_crate002.png", "!",
                             [1100, y])#+gameY])
@@ -173,7 +180,7 @@ while True:
                 if p.collideBlock(block):
                     pass
                 
-                print p.collideBlock(block)
+                #print p.collideBlock(block)
                 
         
         #for ball in ballsHitBoundries:
@@ -187,8 +194,7 @@ while True:
         all.update(size,
                 player.speed,
                 player.didStaticMove)
-        player.virtPos[0] += player.speed[0]
-        player.virtPos[1] += player.speed[1]
+
         bgColor = r,g,b
         screen.fill(bgColor)
         dirty = all.draw(screen)
