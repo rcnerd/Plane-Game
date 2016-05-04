@@ -14,9 +14,6 @@ class Level():
         file.close()
         
         blockSize = 50
-        #ballOdds = 3
-        #ballMax = 10
-        #ballCount = 0
         
         newlines = []
         for line in lines:
@@ -27,8 +24,6 @@ class Level():
             newlines += [newline]
         lines = newlines
 
-        #for line in lines:
-            #print line
             
         for y, line in enumerate(lines):
             for x, c in enumerate(line):

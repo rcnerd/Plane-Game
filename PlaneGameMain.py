@@ -31,14 +31,10 @@ all = pygame.sprite.OrderedUpdates()
 Block.containers = (blocks, gamePieces, all)
 Player.containers = (players, all)
 Coin.containers = (coins, gamePieces, all)
-#PlayerBall.containers = (players, all)
 
 level = Level("Levels/Level1.layout")
 
-#print len(all.sprites())
-
 player = level.player
-#print player.rect.center, player.rect
 
 startup = False
 arrowKeyPressed = False
@@ -97,15 +93,8 @@ while True:
         
         all.update(size,
                 player.speed,
-                player.didStaticMove)
-        
-        #print player.virtPos[0] < 70
-        #print player.virtPos, player.virtSpeed
-        #print "Startup", player.rect.bottom
-        for c in gamePieces:
-            pass
-            #print c.rect.center
-        
+                player.didStaticMove()
+                
         bgColor = r,g,b
         screen.fill(bgColor)
         dirty = all.draw(screen)
@@ -116,8 +105,6 @@ while True:
     player.speed = [5,0]
     player.place([width/2, height/2])
     while not startup:
-        #print "Mouse movement pauses the game for some reason..."
-        #print player.virtPos
         for event in pygame.event.get():
             if event.type == pygame.QUIT: 
                 sys.exit()
@@ -128,10 +115,6 @@ while True:
                 elif event.key == pygame.K_DOWN:
                     player.fly("fly down")
                     arrowKeyPressed  = True
-                #elif event.key == pygame.K_LEFT:
-                    #player.go("left")
-                #elif event.key == pygame.K_RIGHT:
-                    #player.go("right")
             elif event.type == pygame.KEYUP:
                 if event.key == pygame.K_UP:
                     player.fly("fly straight")
@@ -139,15 +122,6 @@ while True:
                 elif event.key == pygame.K_DOWN:
                     player.fly("fly straight")
                     arrowKeyPressed  = True
-                #elif event.key == pygame.K_LEFT:
-                    #player.go("stop left")
-                #elif event.key == pygame.K_RIGHT:
-                    #player.go("stop right")
-            #elif not player.didBounceY:
-                #player.fly("previous")
-        #if not arrowKeyPressed:
-            #if not player.didBounceY:
-                #player.fly("previous")
                 
         if player.virtPos[0]%50 == 0:
             for y in range(75, 254*50, 50):
@@ -159,37 +133,19 @@ while True:
                             "Pictures/Game pieces/GoldCoinSprite/GoldCoinSprite/Coin4.png",
                             "Pictures/Game pieces/GoldCoinSprite/GoldCoinSprite/Coin5.png",
                             "Pictures/Game pieces/GoldCoinSprite/GoldCoinSprite/Coin6.png"], "0",
-                            [1100, y])#+gameY])
-                    #print "^", [1100, y]
+                            [1100, y])
                 elif gamePiece == 1:
                     Block("Pictures/Blocks, and background/Crates/obj_crate002.png", "!",
-                            [1100, y])#+gameY])
-                elif gamePiece == 2:
+                            [1100, y])                elif gamePiece == 2:
                     Block("Pictures/Blocks, and background/Crates/obj_crate002.png", "^",
-                            [1100, y])#+gameY])
-                #if gamePiece <= 2: print all.sprites()[-1].rect.center, y, gamePiece
-        #raw_input("> ")
+                            [1100, y])
         
-        #playersHitBalls = pygame.sprite.groupcollide(players, balls, False, True)
         playersHitBlocks = pygame.sprite.groupcollide(players, blocks, False, False)
-        #ballsHitBoundries = pygame.sprite.groupcollide(balls, boundries, False, False)
-        #ballsHitBalls = pygame.sprite.groupcollide(balls, balls, False, False)
         
         for p in playersHitBlocks:
             for block in playersHitBlocks[p]:
                 if p.collideBlock(block):
                     pass
-                
-                #print p.collideBlock(block)
-                
-        
-        #for ball in ballsHitBoundries:
-            #for boundry in ballsHitBoundries[ball]:
-                #ball.collideBoundry(boundry)
-        
-        #for ball1 in ballsHitBalls:
-            #for ball2 in ballsHitBalls[ball1]:
-                #ball1.collideBall(ball2)3
         
         all.update(size,
                 player.speed,
@@ -201,7 +157,6 @@ while True:
         pygame.display.update(dirty)
         pygame.display.flip()
         clock.tick(60)
-        #print clock.get_fps(), len(all.sprites())
 
 
 

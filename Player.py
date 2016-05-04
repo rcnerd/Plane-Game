@@ -75,22 +75,12 @@ class Player(pygame.sprite.Sprite):
         if self.rect.bottom > other.rect.top and self.rect.top < other.rect.bottom:
             #self.didBounceX = True
             self.didBounceY = True
-            #self.speedx = -self.speedx
             
-            #print other.image
             if other.symbol == "_":
                 self.fly("fly down")
-                #self.previosSpeed = self.speed
-                #self.previousTilt = self.tilt
-                #self.tilt = 0
-                #self.speed = [0,1]
                 return True
             elif other.symbol == "#":
                 self.fly("fly up")
-                #self.previosSpeed = self.speed
-                #self.previousTilt = self.tilt
-                #self.tilt = 0
-                #self.speed = [0,-1]
                 return True
             else:
                 return False
