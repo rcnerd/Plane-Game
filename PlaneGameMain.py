@@ -93,7 +93,7 @@ while True:
         
         all.update(size,
                 player.speed,
-                player.didStaticMove()
+                player.didStaticMove())
                 
         bgColor = r,g,b
         screen.fill(bgColor)
@@ -111,17 +111,17 @@ while True:
             elif event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_UP:
                     player.fly("fly up")
-                    arrowKeyPressed  = True
+                    arrowKeyPressed = True
                 elif event.key == pygame.K_DOWN:
                     player.fly("fly down")
-                    arrowKeyPressed  = True
+                    arrowKeyPressed = True
             elif event.type == pygame.KEYUP:
                 if event.key == pygame.K_UP:
                     player.fly("fly straight")
-                    arrowKeyPressed  = True
+                    arrowKeyPressed = True
                 elif event.key == pygame.K_DOWN:
                     player.fly("fly straight")
-                    arrowKeyPressed  = True
+                    arrowKeyPressed = True
                 
         if player.virtPos[0]%50 == 0:
             for y in range(75, 254*50, 50):
@@ -134,11 +134,13 @@ while True:
                             "Pictures/Game pieces/GoldCoinSprite/GoldCoinSprite/Coin5.png",
                             "Pictures/Game pieces/GoldCoinSprite/GoldCoinSprite/Coin6.png"], "0",
                             [1100, y])
-                elif gamePiece == 1:
-                    Block("Pictures/Blocks, and background/Crates/obj_crate002.png", "!",
-                            [1100, y])                elif gamePiece == 2:
-                    Block("Pictures/Blocks, and background/Crates/obj_crate002.png", "^",
-                            [1100, y])
+                    print y, gamePieces.sprites()[-1].kind
+                #elif gamePiece == 1:
+                    #Block("Pictures/Blocks, and background/Crates/obj_crate002.png", "!",
+                            #[1100, y])                
+                #elif gamePiece == 2:
+                    #Block("Pictures/Blocks, and background/Crates/obj_crate002.png", "^",
+                            #[1100, y])
         
         playersHitBlocks = pygame.sprite.groupcollide(players, blocks, False, False)
         

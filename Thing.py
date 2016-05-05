@@ -10,6 +10,8 @@ class Thing(pygame.sprite.Sprite):
         self.rect = self.image.get_rect(center = pos)
         
         self.speed = [0,0]
+        
+        self.kind = "generic thing"
 
     def update(*args):
         self = args[0]

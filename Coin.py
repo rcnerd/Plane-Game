@@ -3,6 +3,7 @@ import sys, pygame, math, random
 
 class Coin(pygame.sprite.Sprite):
     def __init__(self, images, symbol, pos=[0,0]):
+        pygame.sprite.Sprite.__init__(self, self.containers)
         image = images[0]
         #Thing.__init__(self, image, pos)
         self.symbol = symbol
@@ -12,12 +13,14 @@ class Coin(pygame.sprite.Sprite):
         for image in images:
             self.images += [pygame.transform.scale(pygame.image.load(image), [50,50])]
         self.image = self.images[0]
-        self.rect = self.image.get_rect()
+        self.rect = self.image.get_rect(center = pos)
         
         self.frame = 0
         self.maxFrame = len(self.images)-1
         self.timer = 0
         self.timerMax = .25* 60
+        
+        self.kind = "coin"
         
     def update(*args):
         self = args[0]
