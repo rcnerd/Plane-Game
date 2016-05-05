@@ -82,6 +82,9 @@ class Player(pygame.sprite.Sprite):
             elif other.symbol == "#":
                 self.fly("fly up")
                 return True
+            elif other.symbol == "0";
+                
+                return True
             else:
                 return False
         
