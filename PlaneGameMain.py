@@ -134,7 +134,7 @@ while True:
                             "Pictures/Game pieces/GoldCoinSprite/GoldCoinSprite/Coin5.png",
                             "Pictures/Game pieces/GoldCoinSprite/GoldCoinSprite/Coin6.png"], "0",
                             [1100, y])
-                    print y, gamePieces.sprites()[-1].kind
+                    #print y, gamePieces.sprites()[-1].kind
                 #elif gamePiece == 1:
                     #Block("Pictures/Blocks, and background/Crates/obj_crate002.png", "!",
                             #[1100, y])                
@@ -142,17 +142,19 @@ while True:
                     #Block("Pictures/Blocks, and background/Crates/obj_crate002.png", "^",
                             #[1100, y])
         
-        playersHitBlocks = pygame.sprite.groupcollide(players, blocks, False, False)
+        playersHit_gamePieces = pygame.sprite.groupcollide(players, gamePieces, False, False)
         
-        for p in playersHitBlocks:
-            for block in playersHitBlocks[p]:
-                if p.collideBlock(block):
+        for p in playersHit_gamePieces:
+            for piece in playersHit_gamePieces[p]:
+                if p.collideBlock(piece):
+                    print ">"
                     pass
+                    
         
         all.update(size,
                 player.speed,
                 player.didStaticMove)
-
+        
         bgColor = r,g,b
         screen.fill(bgColor)
         dirty = all.draw(screen)

@@ -11,8 +11,7 @@ class Player(pygame.sprite.Sprite):
         self.maxFuelLevel = 100
         self.fuelLevel = self.maxFuelLevel
         self.fuelUseRate = self.maxFuelLevel/(15*60) #15 seconds at 60 frames 
-        self.maxBankAmount = 
-        self.bankAmount = self.maxBankAmount
+        self.bankAmount = 0
         
         self.images = []
         for image in images:
@@ -85,7 +84,9 @@ class Player(pygame.sprite.Sprite):
                 self.fly("fly up")
                 return True
             elif other.symbol == "0":
-                self.[]+= 5
+                self.bankAmount += 25
+                other.kill()
+                print self.bankAmount
                 return True
             else:
                 return False
