@@ -125,8 +125,8 @@ while True:
                 
         if player.virtPos[0]%50 == 0:
             for y in range(75, 254*50, 50):
-                gamePiece = random.randint(0, 100)
-                if gamePiece == 0:
+                gamePiece = random.randint(0, 1000)
+                if gamePiece == 0 or gamePiece == 1 or gamePiece == 2 or gamePiece == 3 or gamePiece == 4 or gamePiece == 5 or gamePiece == 6 or gamePiece == 7 or gamePiece == 8 or gamePiece == 9:
                     Coin(["Pictures/Game pieces/GoldCoinSprite/GoldCoinSprite/Coin1.png",
                             "Pictures/Game pieces/GoldCoinSprite/GoldCoinSprite/Coin2.png",
                             "Pictures/Game pieces/GoldCoinSprite/GoldCoinSprite/Coin3.png",
@@ -135,10 +135,10 @@ while True:
                             "Pictures/Game pieces/GoldCoinSprite/GoldCoinSprite/Coin6.png"], "0",
                             [1100, y])
                     #print y, gamePieces.sprites()[-1].kind
-                #elif gamePiece == 1:
-                    #Block("Pictures/Blocks, and background/Crates/obj_crate002.png", "!",
-                            #[1100, y])                
-                #elif gamePiece == 2:
+                elif gamePiece == 10:
+                    BigBlock("Pictures/Blocks, and background/BadCloud.png", "C",
+                            [1500, y])                
+                #elif gamePiece == 4:
                     #Block("Pictures/Blocks, and background/Crates/obj_crate002.png", "^",
                             #[1100, y])
         
