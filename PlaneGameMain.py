@@ -150,6 +150,8 @@ while True:
                     print ">"
                     pass
                     
+        if player.virtPos[1] >= 50000 - (player.virtPos[0] + 200):# player.virtPos[0] > 35000: #
+            r,b,g = 250,110,110
         
         all.update(size,
                 player.speed,
