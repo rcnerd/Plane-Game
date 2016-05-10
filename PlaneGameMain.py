@@ -22,6 +22,7 @@ screen = pygame.display.set_mode(size)
 blocks = pygame.sprite.Group()
 buttons = pygame.sprite.Group()
 gamePieces = pygame.sprite.Group()
+actionGamePieces = pygame.sprite.Group()
 boosters = pygame.sprite.Group()
 coins = pygame.sprite.Group()
 spikes = pygame.sprite.Group()
@@ -30,7 +31,7 @@ all = pygame.sprite.OrderedUpdates()
 
 Block.containers = (blocks, gamePieces, all)
 Player.containers = (players, all)
-Coin.containers = (coins, gamePieces, all)
+Coin.containers = (coins, gamePieces, actionGamePieces, all)
 
 level = Level("Levels/Level1.layout")
 
@@ -152,6 +153,12 @@ while True:
                     
         if player.virtPos[1] >= 50000 - (player.virtPos[0] + 200):# player.virtPos[0] > 35000: #
             r,b,g = 250,110,110
+            
+        for piece in actionGamePieces:
+            print player.virtPos[1], piece.rect.y
+            if piece.rect.y + player.virtPos[1] > 300:
+                print "don stuffs"
+                piece.kill()
         
         all.update(size,
                 player.speed,
