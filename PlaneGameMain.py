@@ -27,11 +27,13 @@ boosters = pygame.sprite.Group()
 coins = pygame.sprite.Group()
 spikes = pygame.sprite.Group()
 players = pygame.sprite.Group()
+pointers = pygame.sprite.Group()
 all = pygame.sprite.OrderedUpdates()
 
 Block.containers = (blocks, gamePieces, all)
 Player.containers = (players, all)
 Coin.containers = (coins, gamePieces, actionGamePieces, all)
+Pointer.containers = (pointers, all)
 
 level = Level("Levels/Level1.layout")
 
@@ -40,6 +42,8 @@ player = level.player
 startup = False
 arrowKeyPressed = False
 
+cc = 0
+Pointer("Pictures/Pointer.png", [780, 4575], [-320, 0])
 
 while True:
     while startup:
@@ -126,6 +130,7 @@ while True:
                 
         if player.virtPos[0]%50 == 0:
             for y in range(75, 254*50, 50):
+                y += -1000
                 gamePiece = random.randint(0, 1000)
                 if gamePiece == 0 or gamePiece == 1 or gamePiece == 2 or gamePiece == 3 or gamePiece == 4 or gamePiece == 5 or gamePiece == 6 or gamePiece == 7 or gamePiece == 8 or gamePiece == 9:
                     Coin(["Pictures/Game pieces/GoldCoinSprite/GoldCoinSprite/Coin1.png",
@@ -143,7 +148,17 @@ while True:
                     #Block("Pictures/Blocks, and background/Crates/obj_crate002.png", "^",
                             #[1100, y])
         
+        for c in coins:
+            if cc == 0:
+                cc = c
+            elif cc not in coins:
+                cc = 0
+            else:
+                print cc.rect.center, cc.virtPos
+                
+        
         playersHit_gamePieces = pygame.sprite.groupcollide(players, gamePieces, False, False)
+        #actionPieceHit_blocks = pygame.sprite.groupcollide(actionGamePieces, blocks, False, False) # broken but may need if peice virt pos does not work
         
         for p in playersHit_gamePieces:
             for piece in playersHit_gamePieces[p]:
@@ -151,14 +166,14 @@ while True:
                     print ">"
                     pass
                     
-        if player.virtPos[1] >= 50000 - (player.virtPos[0] + 200):# player.virtPos[0] > 35000: #
+        if player.virtPos[1] >= 50000 - (player.virtPos[0] + 200):
             r,b,g = 250,110,110
             
-        for piece in actionGamePieces:
-            print player.virtPos[1], piece.rect.y
-            if piece.rect.y + player.virtPos[1] > 300:
-                print "don stuffs"
-                piece.kill()
+        #for p in actionPieceHit_blocks: #broken but may need if peice virt pos does not work
+            #for block in actionPieceHit_blocks[p]:
+                #if p.collide(block):
+                    #print "don killed, maybe"
+                    #block.kill()
         
         all.update(size,
                 player.speed,

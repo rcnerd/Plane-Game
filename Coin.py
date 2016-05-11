@@ -9,6 +9,7 @@ class Coin(pygame.sprite.Sprite):
         self.symbol = symbol
         self.blockSize = [50,50]
         self.speed = [0,0]
+        self.virtPos = [0,0]
         self.images = []
         for image in images:
             self.images += [pygame.transform.scale(pygame.image.load(image), [50,50])]
@@ -27,6 +28,8 @@ class Coin(pygame.sprite.Sprite):
         playerSpeed = args[2]
         self.speed[0] = -playerSpeed[0]
         self.speed[1] = -playerSpeed[1]
+        self.virtPos[0] += self.speed[0]
+        self.virtPos[1] += self.speed[1]
         self.move()
         if self.rect.center[0] < self.blockSize[0]/2*-1 +10: #-1/2 block size so that we r + it is off screen
             self.kill()
@@ -43,3 +46,13 @@ class Coin(pygame.sprite.Sprite):
 
     def move(self):
         self.rect = self.rect.move(self.speed)
+        
+    def collide(self, other):
+        if self.rect.bottom > other.rect.top and self.rect.top < other.rect.bottom:
+            
+            if other.symbol == "_":
+                return True
+            elif other.symbol == "#":
+                return True
+            else:
+                return False
