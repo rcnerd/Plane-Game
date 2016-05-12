@@ -21,15 +21,11 @@ class Coin(pygame.sprite.Sprite):
         self.timer = 0
         self.timerMax = .25* 60
         
-        self.kind = "coin"
-        
     def update(*args):
         self = args[0]
         playerSpeed = args[2]
         self.speed[0] = -playerSpeed[0]
         self.speed[1] = -playerSpeed[1]
-        self.virtPos[0] += self.speed[0]
-        self.virtPos[1] += self.speed[1]
         self.move()
         if self.rect.center[0] < self.blockSize[0]/2*-1 +10: #-1/2 block size so that we r + it is off screen
             self.kill()

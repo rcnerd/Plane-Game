@@ -43,7 +43,8 @@ startup = False
 arrowKeyPressed = False
 
 cc = 0
-Pointer("Pictures/Pointer.png", [780, 4575], [-320, 0])
+#Pointer("Pictures/Pointer.png", [780, 4575], [-320, 0])
+ground = 6*50
 
 while True:
     while startup:
@@ -130,7 +131,7 @@ while True:
                 
         if player.virtPos[0]%50 == 0:
             for y in range(75, 254*50, 50):
-                y += -1000
+                y += -2000
                 gamePiece = random.randint(0, 1000)
                 if gamePiece == 0 or gamePiece == 1 or gamePiece == 2 or gamePiece == 3 or gamePiece == 4 or gamePiece == 5 or gamePiece == 6 or gamePiece == 7 or gamePiece == 8 or gamePiece == 9:
                     Coin(["Pictures/Game pieces/GoldCoinSprite/GoldCoinSprite/Coin1.png",
@@ -148,37 +149,39 @@ while True:
                     #Block("Pictures/Blocks, and background/Crates/obj_crate002.png", "^",
                             #[1100, y])
         
-        for c in coins:
-            if cc == 0:
-                cc = c
-            elif cc not in coins:
-                cc = 0
-            else:
-                print cc.rect.center, cc.virtPos
+        #for c in coins:
+            #if cc == 0:
+                #cc = c
+            #elif cc not in coins:
+                #cc = 0
+            #else:
+                #pass
+                #print cc.rect.center, cc.virtPos
                 
         
         playersHit_gamePieces = pygame.sprite.groupcollide(players, gamePieces, False, False)
-        #actionPieceHit_blocks = pygame.sprite.groupcollide(actionGamePieces, blocks, False, False) # broken but may need if peice virt pos does not work
+        actionPieceHit_blocks = pygame.sprite.groupcollide(actionGamePieces, blocks, False, False)
         
         for p in playersHit_gamePieces:
             for piece in playersHit_gamePieces[p]:
                 if p.collideBlock(piece):
-                    print ">"
                     pass
                     
         if player.virtPos[1] >= 50000 - (player.virtPos[0] + 200):
             r,b,g = 250,110,110
             
-        #for p in actionPieceHit_blocks: #broken but may need if peice virt pos does not work
+        #for p in actionPieceHit_blocks:
             #for block in actionPieceHit_blocks[p]:
                 #if p.collide(block):
-                    #print "don killed, maybe"
-                    #block.kill()
+                    #p.kill()
+        ground += -player.speed[1]
+        print ground
         
         all.update(size,
                 player.speed,
                 player.didStaticMove)
         
+        #print clock.tick()
         bgColor = r,g,b
         screen.fill(bgColor)
         dirty = all.draw(screen)

@@ -11,18 +11,14 @@ class Thing(pygame.sprite.Sprite):
         
         self.speed = [0,0]
         self.virtPos = [0,0]
-        
-        self.kind = "generic thing"
 
     def update(*args):
         self = args[0]
         playerSpeed = args[2]
         self.speed[0] = -playerSpeed[0]
         self.speed[1] = -playerSpeed[1]
-        self.virtPos[0] += self.speed[0]
-        self.virtPos[1] += self.speed[1]
         self.move()
-        if self.rect.center[0] < self.blockSize[0]/2*-1 +10: #-1/2 block size so that we r + it is off screen
+        if self.rect.center[0] < self.blockSize[0]/2*-1: #-1/2 block size so that we r + it is off screen
             self.kill()
             
 
@@ -50,4 +46,3 @@ class Pointer(pygame.sprite.Sprite):
         self.rect = self.image.get_rect(center = pos)
         
         self.virtPos = virtPos
-        self.kind = "generic thing"
