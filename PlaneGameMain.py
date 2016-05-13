@@ -174,8 +174,15 @@ while True:
             #for block in actionPieceHit_blocks[p]:
                 #if p.collide(block):
                     #p.kill()
+                    
+        for coin in coins:
+            if coin.rect.center[1] > ground:
+                print"<>"
+                coin.kill()
+                print ground, coin.rect.center[1]
+                
         ground += -player.speed[1]
-        print ground
+        
         
         all.update(size,
                 player.speed,
