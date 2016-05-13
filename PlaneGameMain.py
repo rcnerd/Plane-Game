@@ -110,7 +110,8 @@ while True:
 
     player.speed = [5,0]
     player.place([width/2, height/2])
-    while not startup:
+    while not startup and player.fuelLevel > 0:
+        ground += -player.speed[1]
         for event in pygame.event.get():
             if event.type == pygame.QUIT: 
                 sys.exit()
@@ -169,32 +170,19 @@ while True:
                     
         if player.virtPos[1] >= 50000 - (player.virtPos[0] + 200):
             r,b,g = 250,110,110
-            
-        #for p in actionPieceHit_blocks:
-            #for block in actionPieceHit_blocks[p]:
-                #if p.collide(block):
-                    #p.kill()
                     
         for coin in coins:
             if coin.rect.center[1] > ground:
-                print"<>"
                 coin.kill()
-                print ground, coin.rect.center[1]
-                
-        ground += -player.speed[1]
-        
         
         all.update(size,
                 player.speed,
                 player.didStaticMove)
         
-        #print clock.tick()
         bgColor = r,g,b
         screen.fill(bgColor)
         dirty = all.draw(screen)
         pygame.display.update(dirty)
         pygame.display.flip()
         clock.tick(60)
-
-
-
+        #print clock.get_fps()

@@ -8,9 +8,10 @@ class Player(pygame.sprite.Sprite):
         self.speed = [self.speedx, self.speedy]
         self.virtPos = [25,0]
         self.virtSpeed = [0,0]
-        self.maxFuelLevel = 100
+        self.maxFuelLevel = 100000
         self.fuelLevel = self.maxFuelLevel
         self.fuelUseRate = self.maxFuelLevel/(15*60) #15 seconds at 60 frames 
+        print self.fuelUseRate
         self.bankAmount = 0
         
         self.images = []
@@ -49,6 +50,8 @@ class Player(pygame.sprite.Sprite):
         self.didBounceY = False
         self.virtPos[0] += self.speed[0]
         self.virtPos[1] += self.speed[1]
+        self.fuelLevel += -self.fuelUseRate
+        print self.fuelLevel
 
     def place(self, pos):
         self.rect.center = pos
