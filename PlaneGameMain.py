@@ -52,54 +52,55 @@ while True:
             if event.type == pygame.QUIT: 
                 sys.exit()
         
-        #foward
-        if player.rect.left <  500:
-            player.speed = [2,0]
-            player.staticMove() 
+        ##foward
+        #if player.rect.left <  500:
+            #player.speed = [2,0]
+            #player.staticMove() 
         
-        #tip down start scroll    
-        elif player.rect.left >= 500 and player.rect.bottom < 600:
-            self.previousTilt = self.tilt
-            self.tilt = -45
-            player.staticTilt()
-            player.speed = [3,3]#vertish[3,3]
+        ##tip down start scroll    
+        #elif player.rect.left >= 500 and player.rect.bottom < 600:
+            #self.previousTilt = self.tilt
+            #self.tilt = -45
+            #player.staticTilt()
+            #player.speed = [3,3]#vertish[3,3]
             
-        #foward at bottom    
-        elif player.rect.bottom >= 600 and player.vertPos[0] < 75:
-            self.previousTilt = self.tilt
-            self.tilt = 0
-            player.staticTilt()
-            player.virtSpeed = [4,0]
-            player.virtPos[0] += player.virtSpeed[0]
-            player.virtPos[1] += player.virtSpeed[1]
-            
-        #elif player.virtPos[0] >= 75 and player.rect.top > 300:
-            #player.staticTilt(45)
-            #player.speed = [0,-3]
-            #player.virtSpeed = [3,-3]
-            #gamePieceSpeed = [-3,0]
+        ##foward at bottom    
+        #elif player.rect.bottom >= 600 and player.vertPos[0] < 75:
+            #self.previousTilt = self.tilt
+            #self.tilt = 0
+            #player.staticTilt()
+            #player.virtSpeed = [4,0]
             #player.virtPos[0] += player.virtSpeed[0]
             #player.virtPos[1] += player.virtSpeed[1]
-            #player.staticMove()
-            #print "up!"
-            #for c in gamePieces:
-                #c.playerDynamicMove(gamePieceSpeed)
             
-        #elif player.rect.top <= 300 and player.rect.left < 1100:
-            #player.staticTilt(0)
-            #player.speed = [4,0]
-            #player.staticMove()
-            #player.rect.top = 300
+        ##elif player.virtPos[0] >= 75 and player.rect.top > 300:
+            ##player.staticTilt(45)
+            ##player.speed = [0,-3]
+            ##player.virtSpeed = [3,-3]
+            ##gamePieceSpeed = [-3,0]
+            ##player.virtPos[0] += player.virtSpeed[0]
+            ##player.virtPos[1] += player.virtSpeed[1]
+            ##player.staticMove()
+            ##print "up!"
+            ##for c in gamePieces:
+                ##c.playerDynamicMove(gamePieceSpeed)
+            
+        ##elif player.rect.top <= 300 and player.rect.left < 1100:
+            ##player.staticTilt(0)
+            ##player.speed = [4,0]
+            ##player.staticMove()
+            ##player.rect.top = 300
         
-        #elif player.rect.left > 1100:
-            #startup = False
+        ##elif player.rect.left > 1100:
+            ##startup = False
             
         
         
         
-        all.update(size,
-                player.speed,
-                player.didStaticMove())
+        #all.update(size,
+                #player.speed,
+                #player.didStaticMove()
+                #)
                 
         bgColor = r,g,b
         screen.fill(bgColor)
@@ -110,6 +111,7 @@ while True:
 
     player.speed = [5,0]
     player.place([width/2, height/2])
+    
     while not startup and player.fuelLevel > 0:
         ground += -player.speed[1]
         for event in pygame.event.get():
@@ -186,3 +188,25 @@ while True:
         pygame.display.flip()
         clock.tick(60)
         #print clock.get_fps()
+        
+    while not startup and player.fuelLevel < 0 and player.rect.center[1] < 1000:
+        
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT: 
+                sys.exit()
+        
+        if player.rect.center[1] > 1000:
+            startup = True
+            player.fuelLevel = player.maxFuelLevel
+        
+        player.speed = [3,2]
+        player.staticMove()
+        
+        bgColor = r,g,b
+        screen.fill(bgColor)
+        dirty = all.draw(screen)
+        pygame.display.update(dirty)
+        pygame.display.flip()
+        clock.tick(60)
+        
+    
