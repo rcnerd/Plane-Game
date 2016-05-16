@@ -34,6 +34,7 @@ Block.containers = (blocks, gamePieces, all)
 Player.containers = (players, all)
 Coin.containers = (coins, gamePieces, actionGamePieces, all)
 Pointer.containers = (pointers, all)
+Booster.containers = (boosters, gamePieces, actionGamePieces, all)
 
 level = Level("Levels/Level1.layout")
 
@@ -148,9 +149,9 @@ while True:
                 elif gamePiece == 10:
                     BigBlock("Pictures/Blocks, and background/BadCloud.png", "C",
                             [1500, y])                
-                #elif gamePiece == 4:
-                    #Block("Pictures/Blocks, and background/Crates/obj_crate002.png", "^",
-                            #[1100, y])
+                elif gamePiece == 11:
+                    Booster("Pictures/Blocks, and background/Crates/obj_crate002.png", "^",
+                            [1100, y])
         
         #for c in coins:
             #if cc == 0:
