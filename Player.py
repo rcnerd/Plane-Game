@@ -51,7 +51,6 @@ class Player(pygame.sprite.Sprite):
         self.virtPos[0] += self.speed[0]
         self.virtPos[1] += self.speed[1]
         self.fuelLevel += -self.fuelUseRate
-        print self.fuelLevel
 
     def place(self, pos):
         self.rect.center = pos
@@ -90,6 +89,11 @@ class Player(pygame.sprite.Sprite):
                 self.bankAmount += 25
                 other.kill()
                 print self.bankAmount
+                return True
+            elif other.symbol == "^":
+                self.fuelLevel += self.fuelUseRate * 60
+                other.kill()
+                print self.fuelLevel
                 return True
             else:
                 return False
