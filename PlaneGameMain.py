@@ -1,4 +1,4 @@
-import sys, pygame, math, random
+import sys, pygame, math, random, time
 from Thing import *
 from Block import *
 from Button import *
@@ -113,7 +113,13 @@ while True:
     player.speed = [5,0]
     player.place([width/2, height/2])
     
+    start = time.time()
+    
     while not startup and player.fuelLevel > 0:
+        now = time.time() -start
+        print "Loop start: ", now
+        start = time.time()
+        
         ground += -player.speed[1]
         for event in pygame.event.get():
             if event.type == pygame.QUIT: 
@@ -132,7 +138,11 @@ while True:
                 elif event.key == pygame.K_DOWN:
                     player.fly("fly straight")
                     arrowKeyPressed = True
-                
+        
+        now = time.time() -start
+        print "Event handling: ", now
+        start = time.time()
+        
         if player.virtPos[0]%50 == 0:
             for y in range(75, 254*50, 50):
                 y += -2000
@@ -156,6 +166,10 @@ while True:
                                 "Pictures/Game Pieces/Booster2.png"], "^",
                             [1100, y])
         
+        now = time.time() -start
+        print "spawning: ", now
+        start = time.time()
+        
         #for c in coins:
             #if cc == 0:
                 #cc = c
@@ -169,10 +183,18 @@ while True:
         playersHit_gamePieces = pygame.sprite.groupcollide(players, gamePieces, False, False)
         actionPieceHit_blocks = pygame.sprite.groupcollide(actionGamePieces, blocks, False, False)
         
+        now = time.time() -start
+        print "collision grouping: ", now
+        start = time.time()
+        
         for p in playersHit_gamePieces:
             for piece in playersHit_gamePieces[p]:
                 if p.collideBlock(piece):
                     pass
+        
+        now = time.time() -start
+        print "collision handled: ", now
+        start = time.time()
                     
         if player.virtPos[1] >= 50000 - (player.virtPos[0] + 200):
             r,b,g = 250,110,110
@@ -180,6 +202,10 @@ while True:
         for coin in coins:
             if coin.rect.center[1] > ground:
                 coin.kill()
+        
+        now = time.time() -start
+        print "kill objects: ", now
+        start = time.time()
         
         all.update(size,
                 player.speed,
@@ -191,7 +217,11 @@ while True:
         pygame.display.update(dirty)
         pygame.display.flip()
         clock.tick(60)
-        #print clock.get_fps()
+        print ">>>>>>>>>>>>>>>>>>>>  FPS>>>>> ",clock.get_fps()
+        
+        now = time.time() -start
+        print "drawing: ", now
+        start = time.time()
         
     while not startup and player.fuelLevel < 0 and player.rect.center[1] < 1000:
         
