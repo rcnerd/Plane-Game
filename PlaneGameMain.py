@@ -150,7 +150,10 @@ while True:
                     BigBlock("Pictures/Blocks, and background/BadCloud.png", "C",
                             [1500, y])                
                 elif gamePiece == 11 or gamePiece ==12 or gamePiece == 13 or gamePiece == 14 or gamePiece == 15 or gamePiece == 16:
-                    Booster("Pictures/Blocks, and background/Crates/obj_crate002.png", "^",
+                    Booster(["Pictures/Game Pieces/Booster1.png",
+                                "Pictures/Game Pieces/Booster2.png",
+                                "Pictures/Game Pieces/Booster3.png",
+                                "Pictures/Game Pieces/Booster2.png"], "^",
                             [1100, y])
         
         #for c in coins:

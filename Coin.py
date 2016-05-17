@@ -19,7 +19,7 @@ class Coin(pygame.sprite.Sprite):
         self.frame = 0
         self.maxFrame = len(self.images)-1
         self.timer = 0
-        self.timerMax = .25* 60
+        self.timerMax = .12* 60
         
     def update(*args):
         self = args[0]
