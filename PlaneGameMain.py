@@ -7,6 +7,7 @@ from Coin import *
 from Spike import *
 from Player import *
 from Level import *
+from Cloud import *
 pygame.init()
 
 clock = pygame.time.Clock()
@@ -28,6 +29,7 @@ coins = pygame.sprite.Group()
 spikes = pygame.sprite.Group()
 players = pygame.sprite.Group()
 pointers = pygame.sprite.Group()
+clouds = pygame.sprite.Group()
 all = pygame.sprite.OrderedUpdates()
 
 Block.containers = (blocks, gamePieces, all)
@@ -35,6 +37,7 @@ Player.containers = (players, all)
 Coin.containers = (coins, gamePieces, actionGamePieces, all)
 Pointer.containers = (pointers, all)
 Booster.containers = (boosters, gamePieces, actionGamePieces, all)
+Cloud.containers = (clouds, all)
 
 level = Level("Levels/Level1.layout")
 
@@ -117,7 +120,7 @@ while True:
     
     while not startup and player.fuelLevel > 0:
         now = time.time() -start
-        print "Loop start: ", now
+        #print "Loop start: ", now
         start = time.time()
         
         ground += -player.speed[1]
@@ -140,7 +143,7 @@ while True:
                     arrowKeyPressed = True
         
         now = time.time() -start
-        print "Event handling: ", now
+        #print "Event handling: ", now
         start = time.time()
         
         if player.virtPos[0]%50 == 0:
@@ -157,7 +160,7 @@ while True:
                             [1100, y])
                     #print y, gamePieces.sprites()[-1].kind
                 elif gamePiece == 10:
-                    BigBlock("Pictures/Blocks, and background/BadCloud.png", "C",
+                    Cloud("Pictures/Blocks, and background/BadCloud.png",
                             [1500, y])                
                 elif gamePiece == 11 or gamePiece ==12 or gamePiece == 13 or gamePiece == 14 or gamePiece == 15 or gamePiece == 16:
                     Booster(["Pictures/Game Pieces/Booster1.png",
@@ -167,7 +170,7 @@ while True:
                             [1100, y])
         
         now = time.time() -start
-        print "spawning: ", now
+        #print "spawning: ", now
         start = time.time()
         
         #for c in coins:
@@ -181,10 +184,10 @@ while True:
                 
         
         playersHit_gamePieces = pygame.sprite.groupcollide(players, gamePieces, False, False)
-        actionPieceHit_blocks = pygame.sprite.groupcollide(actionGamePieces, blocks, False, False)
+        #actionPieceHit_blocks = pygame.sprite.groupcollide(actionGamePieces, blocks, False, False)
         
         now = time.time() -start
-        print "collision grouping: ", now
+        #print "collision grouping: ", now
         start = time.time()
         
         for p in playersHit_gamePieces:
@@ -193,7 +196,7 @@ while True:
                     pass
         
         now = time.time() -start
-        print "collision handled: ", now
+        #print "collision handled: ", now
         start = time.time()
                     
         if player.virtPos[1] >= 50000 - (player.virtPos[0] + 200):
@@ -204,7 +207,7 @@ while True:
                 coin.kill()
         
         now = time.time() -start
-        print "kill objects: ", now
+        #print "kill objects: ", now
         start = time.time()
         
         all.update(size,
@@ -217,11 +220,12 @@ while True:
         pygame.display.update(dirty)
         pygame.display.flip()
         clock.tick(60)
-        print ">>>>>>>>>>>>>>>>>>>>  FPS>>>>> ",clock.get_fps()
+        
         
         now = time.time() -start
-        print "drawing: ", now
+        #print "drawing: ", now
         start = time.time()
+        #print ">>>>>>>>>>>>>>>>>>>>  FPS>>>>> ",clock.get_fps()
         
     while not startup and player.fuelLevel < 0 and player.rect.center[1] < 1000:
         
