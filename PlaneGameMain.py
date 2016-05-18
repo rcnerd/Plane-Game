@@ -30,20 +30,19 @@ spikes = pygame.sprite.Group()
 players = pygame.sprite.Group()
 pointers = pygame.sprite.Group()
 clouds = pygame.sprite.Group()
+everyone = pygame.sprite.Group()
 all = pygame.sprite.OrderedUpdates()
 
-Block.containers = (blocks, gamePieces, all)
-Player.containers = (players, all)
-Coin.containers = (coins, gamePieces, actionGamePieces, all)
-Pointer.containers = (pointers, all)
-Booster.containers = (boosters, gamePieces, actionGamePieces, all)
-Cloud.containers = (clouds, all)
+Block.containers = (blocks, gamePieces, everyone, all)
+Player.containers = (players, everyone, all)
+Coin.containers = (coins, gamePieces, actionGamePieces, everyone, all)
+Pointer.containers = (pointers, everyone, all)
+Booster.containers = (boosters, gamePieces, actionGamePieces, everyone, all)
+Cloud.containers = (clouds, everyone, all)
 
-level = Level("Levels/Level1.layout")
 
-player = level.player
 
-startup = False
+startup = True
 arrowKeyPressed = False
 
 cc = 0
@@ -51,60 +50,69 @@ cc = 0
 ground = 6*50
 
 while True:
+    for person in everyone:
+        person.kill()
+    
+    level = Level("Levels/Level1.layout")
+
+    player = level.player
+    
+    startupCount = 0
     while startup:
         for event in pygame.event.get():
             if event.type == pygame.QUIT: 
                 sys.exit()
         
-        ##foward
-        #if player.rect.left <  500:
-            #player.speed = [2,0]
-            #player.staticMove() 
         
-        ##tip down start scroll    
-        #elif player.rect.left >= 500 and player.rect.bottom < 600:
-            #self.previousTilt = self.tilt
-            #self.tilt = -45
-            #player.staticTilt()
-            #player.speed = [3,3]#vertish[3,3]
+        #foward
+        if startupCount < 400:
+            player.speed = [2,0]
+            player.staticMove() 
             
-        ##foward at bottom    
+        
+        #tip down start scroll    
+        elif startupCount >= 400 and startupCount < 500:
+            player.previousTilt = player.tilt
+            player.tilt = -45
+            player.staticTilt()
+            player.speed = [3,3]#vertish[3,3]
+            
+        #foward at bottom    
         #elif player.rect.bottom >= 600 and player.vertPos[0] < 75:
-            #self.previousTilt = self.tilt
-            #self.tilt = 0
+            #player.previousTilt = player.tilt
+            #player.tilt = 0
             #player.staticTilt()
             #player.virtSpeed = [4,0]
             #player.virtPos[0] += player.virtSpeed[0]
             #player.virtPos[1] += player.virtSpeed[1]
             
-        ##elif player.virtPos[0] >= 75 and player.rect.top > 300:
-            ##player.staticTilt(45)
-            ##player.speed = [0,-3]
-            ##player.virtSpeed = [3,-3]
-            ##gamePieceSpeed = [-3,0]
-            ##player.virtPos[0] += player.virtSpeed[0]
-            ##player.virtPos[1] += player.virtSpeed[1]
-            ##player.staticMove()
-            ##print "up!"
-            ##for c in gamePieces:
-                ##c.playerDynamicMove(gamePieceSpeed)
+        #elif player.virtPos[0] >= 75 and player.rect.top > 300:
+            #player.staticTilt(45)
+            #player.speed = [0,-3]
+            #player.virtSpeed = [3,-3]
+            #gamePieceSpeed = [-3,0]
+            #player.virtPos[0] += player.virtSpeed[0]
+            #player.virtPos[1] += player.virtSpeed[1]
+            #player.staticMove()
+            #print "up!"
+            #for c in gamePieces:
+                #c.playerDynamicMove(gamePieceSpeed)
             
-        ##elif player.rect.top <= 300 and player.rect.left < 1100:
-            ##player.staticTilt(0)
-            ##player.speed = [4,0]
-            ##player.staticMove()
-            ##player.rect.top = 300
+        #elif player.rect.top <= 300 and player.rect.left < 1100:
+            #player.staticTilt(0)
+            #player.speed = [4,0]
+            #player.staticMove()
+            #player.rect.top = 300
         
-        ##elif player.rect.left > 1100:
-            ##startup = False
+        #elif player.rect.left > 1100:
+            #startup = False
             
         
-        
+        raw_input("-->")
         
         #all.update(size,
                 #player.speed,
-                #player.didStaticMove()
-                #)
+                #player.didStaticMove)
                 
         bgColor = r,g,b
         screen.fill(bgColor)
@@ -112,6 +120,8 @@ while True:
         pygame.display.update(dirty)
         pygame.display.flip()
         clock.tick(60)
+        print startupCount, player.rect.center
+        startupCount += 1
 
     player.speed = [5,0]
     player.place([width/2, height/2])
@@ -227,7 +237,7 @@ while True:
         start = time.time()
         #print ">>>>>>>>>>>>>>>>>>>>  FPS>>>>> ",clock.get_fps()
         
-    while not startup and player.fuelLevel < 0 and player.rect.center[1] < 1000:
+    while not startup and player.fuelLevel < 0 and player.rect.center[1] < 1100:
         
         for event in pygame.event.get():
             if event.type == pygame.QUIT: 
@@ -239,6 +249,7 @@ while True:
         
         player.speed = [3,2]
         player.staticMove()
+        print player.bankAmount
         
         bgColor = r,g,b
         screen.fill(bgColor)
