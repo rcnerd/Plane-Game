@@ -119,13 +119,6 @@ while True:
         
         if startupCount > 500:
             startup = False
-            
-        
-        
-        
-        #all.update(size,
-                #player.speed,
-                #player.didStaticMove)
                 
         bgColor = r,g,b
         screen.fill(bgColor)
@@ -143,7 +136,6 @@ while True:
     start = time.time()
     
     while not startup and player.fuelLevel > 0:
-        raw_input("-->")
         now = time.time() -start
         #print "Loop start: ", now
         start = time.time()
