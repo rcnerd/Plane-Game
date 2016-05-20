@@ -65,50 +65,63 @@ while True:
         
         
         #foward
-        if startupCount < 400:
+        if startupCount < 250:
             player.speed = [2,0]
             player.staticMove() 
             
         
         #tip down start scroll    
-        elif startupCount >= 400 and startupCount < 500:
+        elif startupCount >= 250 and startupCount < 300:
             player.previousTilt = player.tilt
             player.tilt = -45
-            player.staticTilt()
-            player.speed = [3,3]#vertish[3,3]
+            player.speed = [3,3]
+            all.update(size,
+                player.speed,
+                player.didStaticMove)
             
         #foward at bottom    
-        #elif player.rect.bottom >= 600 and player.vertPos[0] < 75:
-            #player.previousTilt = player.tilt
-            #player.tilt = 0
-            #player.staticTilt()
-            #player.virtSpeed = [4,0]
-            #player.virtPos[0] += player.virtSpeed[0]
-            #player.virtPos[1] += player.virtSpeed[1]
-            
-        #elif player.virtPos[0] >= 75 and player.rect.top > 300:
-            #player.staticTilt(45)
-            #player.speed = [0,-3]
-            #player.virtSpeed = [3,-3]
-            #gamePieceSpeed = [-3,0]
-            #player.virtPos[0] += player.virtSpeed[0]
-            #player.virtPos[1] += player.virtSpeed[1]
-            #player.staticMove()
-            #print "up!"
-            #for c in gamePieces:
-                #c.playerDynamicMove(gamePieceSpeed)
-            
-        #elif player.rect.top <= 300 and player.rect.left < 1100:
-            #player.staticTilt(0)
-            #player.speed = [4,0]
-            #player.staticMove()
-            #player.rect.top = 300
+        elif startupCount >= 300 and startupCount < 315:
+            player.previousTilt = player.tilt
+            player.tilt = 0
+            player.speed = [4,0]
+            all.update(size,
+                player.speed,
+                player.didStaticMove)
+                
+        # up 
+        elif startupCount >= 315 and player.rect.center[1] > height/2:
+            player.previousTilt = player.tilt
+            player.tilt = 45
+            player.speed = [2,-2]
+            player.staticMove()
+            all.update(size,
+                player.speed,
+                player.didStaticMove)
         
-        #elif player.rect.left > 1100:
-            #startup = False
+        # straight after launch        
+        elif startupCount <= 471 :
+            player.previousTilt = player.tilt
+            player.tilt = 0
+            player.speed = [-1,0]
+            player.staticMove()
+            player.speed = [4,0]
+            all.update(size,
+                player.speed,
+                player.didStaticMove)
+                
+        else:
+            player.previousTilt = player.tilt
+            player.tilt = 0
+            player.speed = [4,0]
+            all.update(size,
+                player.speed,
+                player.didStaticMove)
+        
+        if startupCount > 500:
+            startup = False
             
         
-        raw_input("-->")
+        
         
         #all.update(size,
                 #player.speed,
@@ -125,10 +138,12 @@ while True:
 
     player.speed = [5,0]
     player.place([width/2, height/2])
+    print [width/2, height/2]
     
     start = time.time()
     
     while not startup and player.fuelLevel > 0:
+        raw_input("-->")
         now = time.time() -start
         #print "Loop start: ", now
         start = time.time()
