@@ -180,10 +180,10 @@ while True:
                     Cloud("Pictures/Blocks, and background/BadCloud.png",
                             [1500, y])                
                 elif gamePiece == 11 or gamePiece ==12 or gamePiece == 13 or gamePiece == 14 or gamePiece == 15 or gamePiece == 16:
-                    Booster(["Pictures/Game Pieces/Booster1.png",
-                                "Pictures/Game Pieces/Booster2.png",
-                                "Pictures/Game Pieces/Booster3.png",
-                                "Pictures/Game Pieces/Booster2.png"], "^",
+                    Booster(["Pictures/Game pieces/Booster1.png",
+                                "Pictures/Game pieces/Booster2.png",
+                                "Pictures/Game pieces/Booster3.png",
+                                "Pictures/Game pieces/Booster2.png"], "^",
                             [1100, y])
         
         now = time.time() -start
