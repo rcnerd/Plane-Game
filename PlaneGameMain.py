@@ -250,7 +250,8 @@ while True:
             if event.type == pygame.QUIT: 
                 sys.exit()
         
-        if player.rect.center[1] > 1000:
+        if player.rect.center[1] > 700:
+            print "refreshing"
             startup = True
             player.fuelLevel = player.maxFuelLevel
         
