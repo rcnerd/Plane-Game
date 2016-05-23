@@ -11,7 +11,7 @@ class Player(pygame.sprite.Sprite):
         self.maxFuelLevel = 100000
         self.fuelLevel = self.maxFuelLevel
         self.fuelUseRate = self.maxFuelLevel/(15*60) #15 seconds at 60 frames 
-        print self.fuelUseRate
+        #print self.fuelUseRate
         self.bankAmount = 0
         
         self.images = []
