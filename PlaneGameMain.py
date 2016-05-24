@@ -43,12 +43,18 @@ Cloud.containers = (clouds, everyone, all)
 
 
 startup = True
+shop = False
 arrowKeyPressed = False
 
 cc = 0 # used for picking a single object in a list see 192 ish
 ground = 6*50
 
 while True:
+    while shop:
+        
+        shop = False
+        startup = True
+    
     for person in everyone:
         person.kill()
     
@@ -131,12 +137,12 @@ while True:
         pygame.display.update(dirty)
         pygame.display.flip()
         clock.tick(60)
-        print startupCount, player.rect.center, [width/2, height/2]
+        #print startupCount, player.rect.center, [width/2, height/2]
         startupCount += 1
 
     player.speed = [5,0]
     player.place([width/2, height/2])
-    print [width/2, height/2]
+    #print [width/2, height/2]
     
     start = time.time()
     
@@ -256,7 +262,7 @@ while True:
         
         if player.rect.center[1] > 700:
             print "refreshing"
-            startup = True
+            shop = True
             player.fuelLevel = player.maxFuelLevel
         
         player.speed = [3,2]
