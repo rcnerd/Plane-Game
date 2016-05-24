@@ -22,13 +22,16 @@ class Level():
             newlines += [newline]
         lines = newlines
 
-        chars = ['A','B','C','D','E','F','G','H','I'',J','K'',L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z','1','2','3','4','5','6','7','8','9','0']
+        chars = ['A','B','C','D','E','F','G','H','I'',J','K'',L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z']
+        nums = ['1','2','3','4','5','6','7','8','9','0']
         for y, line in enumerate(lines):
             for x, c in enumerate(line):
-                for char in chars:
-                    if c == char:
-                        Block("Pictures/Blocks, and background/Crates/obj_crate002.png", char,
-                            [blockSize*x+blockSize/2, blockSize*y+(blockSize/2)-12100])
+                if c in chars:
+                    Block("Pictures/Blocks, and background/Letter_Blocks_01/Letter_Blocks_01/Letter_Blocks_01_Set_4_"+c+"_64x64.png", c,
+                        [blockSize*x+blockSize/2, blockSize*y+(blockSize/2)-12100])
+                elif c in nums:
+                    BUTTTONS
+                        #Block("
                 #elif c == 'A':
                     #Block("Pictures/Blocks, and background/Crates/obj_crate002.png", "A",
                          #[blockSize*x+blockSize/2, blockSize*y+(blockSize/2)-12100])
