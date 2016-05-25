@@ -2,7 +2,7 @@ import pygame, sys, math, random
 from Block import *
 from Button import *
 
-class Level():
+class Shop():
     def __init__(self, lev):
         self.loadLevel(lev)
     
@@ -30,8 +30,7 @@ class Level():
                     Block("Pictures/Blocks, and background/Letter_Blocks_01/Letter_Blocks_01/Letter_Blocks_01_Set_4_"+c+"_64x64.png", c,
                         [blockSize*x+blockSize/2, blockSize*y+(blockSize/2)-12100])
                 elif c in nums:
-                    BUTTTONS
-                        #Block("
+                    Button("Pictures/Blocks, and background/Letter_Blocks_01/"+c+".png", c, [blockSize*x+blockSize/2, blockSize*y+(blockSize/2)-12100])
                 #elif c == 'A':
                     #Block("Pictures/Blocks, and background/Crates/obj_crate002.png", "A",
                          #[blockSize*x+blockSize/2, blockSize*y+(blockSize/2)-12100])

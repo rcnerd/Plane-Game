@@ -8,6 +8,7 @@ from Spike import *
 from Player import *
 from Level import *
 from Cloud import *
+from Shop import *
 pygame.init()
 
 clock = pygame.time.Clock()
@@ -50,10 +51,19 @@ cc = 0 # used for picking a single object in a list see 192 ish
 ground = 6*50
 
 while True:
+    
+    shop = Shop("Levels/Shop.layout")
+    
     while shop:
         
-        shop = False
-        startup = True
+        bgColor = r,g,b
+        screen.fill(bgColor)
+        dirty = all.draw(screen)
+        pygame.display.update(dirty)
+        pygame.display.flip()
+        clock.tick(60)
+        #shop = False
+        #startup = True
     
     for person in everyone:
         person.kill()
