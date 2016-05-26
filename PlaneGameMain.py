@@ -55,16 +55,27 @@ while True:
     shop = Shop("Levels/Shop.layout")
     
     while shop:
-        
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT: 
+                sys.exit()
+            elif event.type == pygame.MOUSEBUTTONDOWN:
+                if event.button == 4:
+                    print 4
+                if event.button == 5:
+                    print 5
+            
+            
+        all.update(size,
+                [0,1])
+            
         bgColor = r,g,b
         screen.fill(bgColor)
         dirty = all.draw(screen)
         pygame.display.update(dirty)
         pygame.display.flip()
         clock.tick(60)
-        print "da stuffs"
         #shop = False
-        startup = False # True
+        #startup = False # True
     
     for person in everyone:
         person.kill()
