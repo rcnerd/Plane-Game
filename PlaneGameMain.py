@@ -40,7 +40,7 @@ Coin.containers = (coins, gamePieces, actionGamePieces, everyone, all)
 Pointer.containers = (pointers, everyone, all)
 Booster.containers = (boosters, gamePieces, actionGamePieces, everyone, all)
 Cloud.containers = (clouds, everyone, all)
-
+Button.containers = (buttons, everyone, all)
 
 
 startup = True
@@ -62,8 +62,9 @@ while True:
         pygame.display.update(dirty)
         pygame.display.flip()
         clock.tick(60)
+        print "da stuffs"
         #shop = False
-        #startup = True
+        startup = False # True
     
     for person in everyone:
         person.kill()

@@ -2,8 +2,8 @@ import sys, pygame, math, random
 from Thing import Thing
 
 class Block(Thing):
-    def __init__(self, image, symbol, pos=[0,0]):
-        Thing.__init__(self, image, pos)
+    def __init__(self, image, symbol, pos=[0,0], blockSize = [50,50]):
+        Thing.__init__(self, image, pos, blockSize)
         self.symbol = symbol
         
 
