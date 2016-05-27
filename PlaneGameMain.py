@@ -52,14 +52,19 @@ arrowKeyPressed = False
 
 cc = 0 # used for picking a single object in a list see 192 ish
 ground = 6*50
+playerBankAmount = 0
 
 while True:
+    
+    for person in everyone:
+        person.kill()
     
     shop = Shop("Levels/Shop.layout")
     shopScroll = [0,0]
     
-    if 
-    bankAccountLevelText = Text(Player.bankAmount, [0,0], size)
+    
+    
+    bankAccountLevelText = Text("Bank Account: "+str(playerBankAmount), [100*2,100*1], size)
     while shop:
         for event in pygame.event.get():
             if event.type == pygame.QUIT: 
@@ -69,17 +74,9 @@ while True:
                     shopScroll = [0,-100]
                 elif event.button == 5:
                     shopScroll = [0,100]
-                
-        for c in players:
-            if cc == 0:
-                cc = c
-            elif cc not in players:
-                cc = 0
-            else:
-                pass
-                print cc.rect.center, cc.virtPos
-        
-        
+                elif event.button == 1:
+                    shop = False
+                    startup = True
         all.update(size,
                 shopScroll)
         shopScroll = [0,0]
@@ -90,8 +87,7 @@ while True:
         pygame.display.update(dirty)
         pygame.display.flip()
         clock.tick(60)
-        #shop = False
-        #startup = False # True
+        
     
     for person in everyone:
         person.kill()
@@ -306,6 +302,8 @@ while True:
         player.speed = [3,2]
         player.staticMove()
         print player.bankAmount
+        
+        playerBankAmount = player.bankAmount
         
         bgColor = r,g,b
         screen.fill(bgColor)
