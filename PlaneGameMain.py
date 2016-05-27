@@ -40,7 +40,7 @@ Coin.containers = (coins, gamePieces, actionGamePieces, everyone, all)
 Pointer.containers = (pointers, everyone, all)
 Booster.containers = (boosters, gamePieces, actionGamePieces, everyone, all)
 Cloud.containers = (clouds, everyone, all)
-
+Button.containers = (buttons, everyone, all)
 
 
 startup = True
@@ -55,7 +55,19 @@ while True:
     shop = Shop("Levels/Shop.layout")
     
     while shop:
-        
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT: 
+                sys.exit()
+            elif event.type == pygame.MOUSEBUTTONDOWN:
+                if event.button == 4:
+                    print 4
+                if event.button == 5:
+                    print 5
+            
+            
+        all.update(size,
+                [0,1])
+            
         bgColor = r,g,b
         screen.fill(bgColor)
         dirty = all.draw(screen)
@@ -63,7 +75,7 @@ while True:
         pygame.display.flip()
         clock.tick(60)
         #shop = False
-        #startup = True
+        #startup = False # True
     
     for person in everyone:
         person.kill()
