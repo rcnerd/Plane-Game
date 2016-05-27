@@ -23,7 +23,7 @@ class Shop():
         lines = newlines
 
         chars = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z','#']
-        buttons = ['1','2','3','4','5','6','7','8','9','0']#,'<','>']
+        buttons = ['1','2','3','4','5','6','7','8','9','0','<','>']
         for y, line in enumerate(lines):
             print y,line
             for x, c in enumerate(line):
@@ -31,13 +31,13 @@ class Shop():
                 if c in chars:
                     if c == '#':
                         Block("Pictures/Blocks, and background/Crates/obj_crate002.png", "#",
-                            [blockSize*x+blockSize/2, blockSize*y+(blockSize/2)], [blockSize,blockSize])
+                            [blockSize*x+blockSize/2, blockSize*y+(blockSize/2)-9*100], [blockSize,blockSize])
                         print "don made a reg block"
                     else:
                         Block("Pictures/Blocks, and background/Letter_Blocks_01/Letter_Blocks_01/Letter_Blocks_01_Set_4_"+c+"_64x64.png", c,
-                            [blockSize*x+blockSize/2, blockSize*y+(blockSize/2)], [blockSize,blockSize])
+                            [blockSize*x+blockSize/2, blockSize*y+(blockSize/2)-9*100], [blockSize,blockSize])
                         print "don made a letter block"
                 elif c in buttons:
                     Button("Pictures/Blocks, and background/Letter_Blocks_01/"+c+".png", c,
-                        [blockSize*x+blockSize/2, blockSize*y+(blockSize/2)], [blockSize,blockSize])
+                        [blockSize*x+blockSize/2, blockSize*y+(blockSize/2)-9*100], [blockSize,blockSize])
                     print "don made a Button"

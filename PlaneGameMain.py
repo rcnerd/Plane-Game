@@ -53,20 +53,21 @@ ground = 6*50
 while True:
     
     shop = Shop("Levels/Shop.layout")
-    
+    shopScroll = [0,0]
     while shop:
         for event in pygame.event.get():
             if event.type == pygame.QUIT: 
                 sys.exit()
             elif event.type == pygame.MOUSEBUTTONDOWN:
                 if event.button == 4:
-                    print 4
-                if event.button == 5:
-                    print 5
-            
+                    shopScroll = [0,-100]
+                elif event.button == 5:
+                    shopScroll = [0,100]
+                
             
         all.update(size,
-                [0,1])
+                shopScroll)
+        shopScroll = [0,0]
             
         bgColor = r,g,b
         screen.fill(bgColor)
