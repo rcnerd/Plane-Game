@@ -8,6 +8,7 @@ from Spike import *
 from Player import *
 from Level import *
 from Cloud import *
+from Shop import *
 pygame.init()
 
 clock = pygame.time.Clock()
@@ -43,13 +44,27 @@ Cloud.containers = (clouds, everyone, all)
 
 
 startup = True
+shop = False
 arrowKeyPressed = False
 
-cc = 0
-#Pointer("Pictures/Pointer.png", [780, 4575], [-320, 0])
+cc = 0 # used for picking a single object in a list see 192 ish
 ground = 6*50
 
 while True:
+    
+    shop = Shop("Levels/Shop.layout")
+    
+    while shop:
+        
+        bgColor = r,g,b
+        screen.fill(bgColor)
+        dirty = all.draw(screen)
+        pygame.display.update(dirty)
+        pygame.display.flip()
+        clock.tick(60)
+        #shop = False
+        #startup = True
+    
     for person in everyone:
         person.kill()
     
@@ -65,33 +80,36 @@ while True:
         
         
         #foward
-        if startupCount < 250:
+        if startupCount < 245:
+            player.previousTilt = player.tilt
+            player.tilt = 5
             player.speed = [2,0]
+            player.staticTilt()
             player.staticMove() 
             
         
         #tip down start scroll    
-        elif startupCount >= 250 and startupCount < 300:
+        elif startupCount >= 245 and startupCount < 295:
             player.previousTilt = player.tilt
-            player.tilt = -45
+            player.tilt = -40
             player.speed = [3,3]
             all.update(size,
                 player.speed,
                 player.didStaticMove)
             
         #foward at bottom    
-        elif startupCount >= 300 and startupCount < 315:
+        elif startupCount >= 295 and startupCount < 312:
             player.previousTilt = player.tilt
-            player.tilt = 0
+            player.tilt = 5
             player.speed = [4,0]
             all.update(size,
                 player.speed,
                 player.didStaticMove)
                 
         # up 
-        elif startupCount >= 315 and player.rect.center[1] > height/2:
+        elif startupCount >= 312 and player.rect.center[1] > height/2:
             player.previousTilt = player.tilt
-            player.tilt = 45
+            player.tilt = 50
             player.speed = [2,-2]
             player.staticMove()
             all.update(size,
@@ -99,7 +117,8 @@ while True:
                 player.didStaticMove)
         
         # straight after launch        
-        elif startupCount <= 471 :
+        elif startupCount <= 458 :
+            #raw_input("-->")
             player.previousTilt = player.tilt
             player.tilt = 0
             player.speed = [-1,0]
@@ -120,18 +139,20 @@ while True:
         if startupCount > 500:
             startup = False
                 
+        #raw_input("-->")
+        
         bgColor = r,g,b
         screen.fill(bgColor)
         dirty = all.draw(screen)
         pygame.display.update(dirty)
         pygame.display.flip()
         clock.tick(60)
-        print startupCount, player.rect.center
+        #print startupCount, player.rect.center, [width/2, height/2]
         startupCount += 1
 
     player.speed = [5,0]
     player.place([width/2, height/2])
-    print [width/2, height/2]
+    #print [width/2, height/2]
     
     start = time.time()
     
@@ -201,7 +222,6 @@ while True:
                 
         
         playersHit_gamePieces = pygame.sprite.groupcollide(players, gamePieces, False, False)
-        #actionPieceHit_blocks = pygame.sprite.groupcollide(actionGamePieces, blocks, False, False)
         
         now = time.time() -start
         #print "collision grouping: ", now
@@ -250,8 +270,9 @@ while True:
             if event.type == pygame.QUIT: 
                 sys.exit()
         
-        if player.rect.center[1] > 1000:
-            startup = True
+        if player.rect.center[1] > 700:
+            print "refreshing"
+            shop = True
             player.fuelLevel = player.maxFuelLevel
         
         player.speed = [3,2]

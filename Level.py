@@ -1,8 +1,6 @@
 import pygame, sys, math, random
 from Block import *
 from Player import *
-#from Wall import *
-#from PlayerBall import *
 
 class Level():
     def __init__(self, lev):
