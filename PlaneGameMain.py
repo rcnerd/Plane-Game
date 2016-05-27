@@ -9,6 +9,7 @@ from Player import *
 from Level import *
 from Cloud import *
 from Shop import *
+from Text import *
 pygame.init()
 
 clock = pygame.time.Clock()
@@ -32,6 +33,7 @@ players = pygame.sprite.Group()
 pointers = pygame.sprite.Group()
 clouds = pygame.sprite.Group()
 everyone = pygame.sprite.Group()
+textBoxes = pygame.sprite.Group()
 all = pygame.sprite.OrderedUpdates()
 
 Block.containers = (blocks, gamePieces, everyone, all)
@@ -41,6 +43,7 @@ Pointer.containers = (pointers, everyone, all)
 Booster.containers = (boosters, gamePieces, actionGamePieces, everyone, all)
 Cloud.containers = (clouds, everyone, all)
 Button.containers = (buttons, everyone, all)
+Text.containers = (textBoxes, everyone, all)
 
 
 startup = True
@@ -54,6 +57,9 @@ while True:
     
     shop = Shop("Levels/Shop.layout")
     shopScroll = [0,0]
+    
+    if 
+    bankAccountLevelText = Text(Player.bankAmount, [0,0], size)
     while shop:
         for event in pygame.event.get():
             if event.type == pygame.QUIT: 
@@ -64,7 +70,16 @@ while True:
                 elif event.button == 5:
                     shopScroll = [0,100]
                 
-            
+        for c in players:
+            if cc == 0:
+                cc = c
+            elif cc not in players:
+                cc = 0
+            else:
+                pass
+                print cc.rect.center, cc.virtPos
+        
+        
         all.update(size,
                 shopScroll)
         shopScroll = [0,0]
