@@ -64,8 +64,10 @@ while True:
     
     
     
-    bankAccountLevelText = Text("Bank Account: "+str(playerBankAmount), [100*2,100*1], size)
+    bankAccountLevelText = Text("$"+str(playerBankAmount), [50,150], size, (100,200,100))
+    bankAccountLevelText = Text("$"+str(playerBankAmount), [size[0]-50,150], size, (100,200,100))
     while shop:
+        pt = [0,0]
         for event in pygame.event.get():
             if event.type == pygame.QUIT: 
                 sys.exit()
@@ -74,9 +76,20 @@ while True:
                     shopScroll = [0,-100]
                 elif event.button == 5:
                     shopScroll = [0,100]
-                elif event.button == 1:
+            elif event.type == pygame.MOUSEBUTTONUP:
+                if event.button == 1:
+                    pt = pygame.mouse.get_pos()
+                elif event.button == 3:
                     shop = False
                     startup = True
+                    for person in everyone:
+                        person.kill()
+                    bgColor = r,g,b = 250,110,110
+        
+        for button in buttons:
+            if button.isClicked(pt):
+                print "don clicked: "+str(button)
+        
         all.update(size,
                 shopScroll)
         shopScroll = [0,0]
@@ -92,9 +105,11 @@ while True:
     for person in everyone:
         person.kill()
     
-    level = Level("Levels/Level1.layout")
+    level = Level("Levels/Level1.layout", playerBankAmount)
 
     player = level.player
+    
+    bgColor = r,g,b = 135, 206, 235
     
     startupCount = 0
     while startup:
