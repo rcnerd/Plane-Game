@@ -281,6 +281,9 @@ while True:
         for coin in coins:
             if coin.rect.center[1] > ground:
                 coin.kill()
+        for booster in boosters:
+            if booster.rect.center[1] > ground:
+                booster.kill()
         
         now = time.time() -start
         #print "kill objects: ", now
@@ -301,7 +304,7 @@ while True:
         now = time.time() -start
         #print "drawing: ", now
         start = time.time()
-        #print ">>>>>>>>>>>>>>>>>>>>  FPS>>>>> ",clock.get_fps()
+        print ">>>>>>>>>>>>>>>>>>>>  FPS>>>>> ",clock.get_fps()
         
     while not startup and player.fuelLevel < 0 and player.rect.center[1] < 1100:
         
