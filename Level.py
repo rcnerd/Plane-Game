@@ -3,10 +3,10 @@ from Block import *
 from Player import *
 
 class Level():
-    def __init__(self, lev):
-        self.loadLevel(lev)
+    def __init__(self, lev, playerBankAmount):
+        self.loadLevel(lev, playerBankAmount)
     
-    def loadLevel(self, lev):
+    def loadLevel(self, lev, playerBankAmount):
         file = open(lev, 'r')
         lines = file.readlines()
         file.close()
@@ -48,4 +48,4 @@ class Level():
                          
                 elif c == '@':
                     self.player = Player(["Pictures/Player/Biplane.png"],
-                            [blockSize*x+blockSize/2, blockSize*y+(blockSize/2)-12100+12])
+                            [blockSize*x+blockSize/2, blockSize*y+(blockSize/2)-12100+12], playerBankAmount)

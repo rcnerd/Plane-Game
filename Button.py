@@ -7,3 +7,9 @@ class Button(Block):
         
     def wasClicked(self, mouseLocation = [0,0]):
         pass
+    
+    def isClicked(self, pt):
+        if pt[0] > self.rect.left and pt[0] < self.rect.right:
+            if pt[1] > self.rect.top and pt[1] < self.rect.bottom:
+                return True
+        return False

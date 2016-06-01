@@ -9,6 +9,7 @@ from Player import *
 from Level import *
 from Cloud import *
 from Shop import *
+from Text import *
 pygame.init()
 
 clock = pygame.time.Clock()
@@ -32,6 +33,7 @@ players = pygame.sprite.Group()
 pointers = pygame.sprite.Group()
 clouds = pygame.sprite.Group()
 everyone = pygame.sprite.Group()
+textBoxes = pygame.sprite.Group()
 all = pygame.sprite.OrderedUpdates()
 
 Block.containers = (blocks, gamePieces, everyone, all)
@@ -41,6 +43,7 @@ Pointer.containers = (pointers, everyone, all)
 Booster.containers = (boosters, gamePieces, actionGamePieces, everyone, all)
 Cloud.containers = (clouds, everyone, all)
 Button.containers = (buttons, everyone, all)
+Text.containers = (textBoxes, everyone, all)
 
 
 startup = True
@@ -49,24 +52,47 @@ arrowKeyPressed = False
 
 cc = 0 # used for picking a single object in a list see 192 ish
 ground = 6*50
+playerBankAmount = 0
 
 while True:
     
-    shop = Shop("Levels/Shop.layout")
+    for person in everyone:
+        person.kill()
     
+    shop = Shop("Levels/Shop.layout")
+    shopScroll = [0,0]
+    
+    
+    
+    bankAccountLevelText = Text("$"+str(playerBankAmount), [50,150], size, (100,200,100))
+    bankAccountLevelText = Text("$"+str(playerBankAmount), [size[0]-50,150], size, (100,200,100))
     while shop:
+        pt = [0,0]
         for event in pygame.event.get():
             if event.type == pygame.QUIT: 
                 sys.exit()
             elif event.type == pygame.MOUSEBUTTONDOWN:
                 if event.button == 4:
-                    print 4
-                if event.button == 5:
-                    print 5
-            
-            
+                    shopScroll = [0,-100]
+                elif event.button == 5:
+                    shopScroll = [0,100]
+            elif event.type == pygame.MOUSEBUTTONUP:
+                if event.button == 1:
+                    pt = pygame.mouse.get_pos()
+                elif event.button == 3:
+                    shop = False
+                    startup = True
+                    for person in everyone:
+                        person.kill()
+                    bgColor = r,g,b = 250,110,110
+        
+        for button in buttons:
+            if button.isClicked(pt):
+                print "don clicked: "+str(button)
+        
         all.update(size,
-                [0,1])
+                shopScroll)
+        shopScroll = [0,0]
             
         bgColor = r,g,b
         screen.fill(bgColor)
@@ -74,15 +100,16 @@ while True:
         pygame.display.update(dirty)
         pygame.display.flip()
         clock.tick(60)
-        #shop = False
-        #startup = False # True
+        
     
     for person in everyone:
         person.kill()
     
-    level = Level("Levels/Level1.layout")
+    level = Level("Levels/Level1.layout", playerBankAmount)
 
     player = level.player
+    
+    bgColor = r,g,b = 135, 206, 235
     
     startupCount = 0
     while startup:
@@ -254,6 +281,9 @@ while True:
         for coin in coins:
             if coin.rect.center[1] > ground:
                 coin.kill()
+        for booster in boosters:
+            if booster.rect.center[1] > ground:
+                booster.kill()
         
         now = time.time() -start
         #print "kill objects: ", now
@@ -274,7 +304,7 @@ while True:
         now = time.time() -start
         #print "drawing: ", now
         start = time.time()
-        #print ">>>>>>>>>>>>>>>>>>>>  FPS>>>>> ",clock.get_fps()
+        print ">>>>>>>>>>>>>>>>>>>>  FPS>>>>> ",clock.get_fps()
         
     while not startup and player.fuelLevel < 0 and player.rect.center[1] < 1100:
         
@@ -290,6 +320,8 @@ while True:
         player.speed = [3,2]
         player.staticMove()
         print player.bankAmount
+        
+        playerBankAmount = player.bankAmount
         
         bgColor = r,g,b
         screen.fill(bgColor)
