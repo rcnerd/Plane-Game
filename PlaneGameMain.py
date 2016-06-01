@@ -53,6 +53,7 @@ arrowKeyPressed = False
 cc = 0 # used for picking a single object in a list see 192 ish
 ground = 6*50
 playerBankAmount = 0
+playerMaxFuelTime = 15
 
 while True:
     
@@ -64,8 +65,10 @@ while True:
     
     
     
-    bankAccountLevelText = Text("$"+str(playerBankAmount), [50,150], size, (100,200,100))
-    bankAccountLevelText = Text("$"+str(playerBankAmount), [size[0]-50,150], size, (100,200,100))
+    bankAccountLevelTextL = Text("$"+str(playerBankAmount), [50,150], size, (100,200,100))
+    bankAccountLevelTextR = Text("$"+str(playerBankAmount), [size[0]-50,150], size, (100,200,100))
+    
+    tooMuchMoneyTimer = 0
     while shop:
         pt = [0,0]
         for event in pygame.event.get():
@@ -86,10 +89,30 @@ while True:
                         person.kill()
                     bgColor = r,g,b = 250,110,110
         
+        attributes = ("#GAS TANK#","# PROFIT #","# COINS  #","# STARS  #","#BOOSTERS#")
+        symbols = ('1','2','3','4','5','6')
+        
         for button in buttons:
             if button.isClicked(pt):
-                print "don clicked: "+str(button)
+                print "don clicked: "+str(button), button.symbol, button.attribute, attributes[0]
+                if button.attribute == attributes[0]:
+                    if button.symbol == symbols[0]:
+                        if playerBankAmount >= 25:
+                            playerMaxFuelTime = 25
+                            playerBankAmount += -500
+                        else:
+                            tooMuchMoney = Text("That costs too much!!!", [size[0]/2,size[1]/2], size, (250,70,70))
+                            tooMuchMoneyTimer = 0
+                    if button.symbol == symbols[1]:
+                        if playerBankAmount >= 650:
+                            playerMaxFuelTime = 40
+                            playerBankAmount += -650
         
+        
+        tooMuchMoneyTimer += 1
+        
+        if tooMuchMoneyTimer > 250:
+            tooMuchMoney.kill()
         all.update(size,
                 shopScroll)
         shopScroll = [0,0]
@@ -105,7 +128,7 @@ while True:
     for person in everyone:
         person.kill()
     
-    level = Level("Levels/Level1.layout", playerBankAmount)
+    level = Level("Levels/Level1.layout", playerBankAmount, playerMaxFuelTime)
 
     player = level.player
     
@@ -304,7 +327,7 @@ while True:
         now = time.time() -start
         #print "drawing: ", now
         start = time.time()
-        print ">>>>>>>>>>>>>>>>>>>>  FPS>>>>> ",clock.get_fps()
+        #print ">>>>>>>>>>>>>>>>>>>>  FPS>>>>> ",clock.get_fps()
         
     while not startup and player.fuelLevel < 0 and player.rect.center[1] < 1100:
         
