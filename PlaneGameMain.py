@@ -10,6 +10,7 @@ from Level import *
 from Cloud import *
 from Shop import *
 from Text import *
+from FuelGuage import *
 pygame.init()
 
 clock = pygame.time.Clock()
@@ -34,6 +35,7 @@ pointers = pygame.sprite.Group()
 clouds = pygame.sprite.Group()
 everyone = pygame.sprite.Group()
 textBoxes = pygame.sprite.Group()
+hud = pygame.sprite.Group()
 all = pygame.sprite.OrderedUpdates()
 
 Block.containers = (blocks, gamePieces, everyone, all)
@@ -44,6 +46,7 @@ Booster.containers = (boosters, gamePieces, actionGamePieces, everyone, all)
 Cloud.containers = (clouds, everyone, all)
 Button.containers = (buttons, everyone, all)
 Text.containers = (textBoxes, everyone, all)
+FuelGuage.containers = (hud, all)
 
 
 startup = True
@@ -98,7 +101,7 @@ while True:
                 if button.attribute == attributes[0]:
                     #for symbol in symbols:
                         #if button.symbol == symbol:
-                            if playerBankAmount >= 
+                            #if playerBankAmount >= 
                     if button.symbol == symbols[0]:
                         if playerBankAmount >= 500:
                             playerMaxFuelTime = 25
@@ -166,6 +169,8 @@ while True:
     level = Level("Levels/Level1.layout", playerBankAmount, playerMaxFuelTime)
 
     player = level.player
+    
+    fuel = FuelGuage(player.fuelLevel, [50,50])
     
     bgColor = r,g,b = 135, 206, 235
     
