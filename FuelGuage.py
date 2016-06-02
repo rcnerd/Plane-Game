@@ -16,7 +16,7 @@ class FuelGuage(pygame.sprite.Sprite):
         
     def update(*args):
         self = args[0]
-        self.currentFuel = args[4]
+        self.currentFuel = args[3]
         
         self.percentFuel = float(self.currentFuel)/float(self.maxFuel)*100
         

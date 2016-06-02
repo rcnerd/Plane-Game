@@ -9,4 +9,4 @@ class Text(pygame.sprite.Sprite):
         font = pygame.font.Font(None, 72)
         self.image = font.render(text, 1, color)
         self.rect = self.image.get_rect(center = location)
-        print self.rect
+        #print self.rect
