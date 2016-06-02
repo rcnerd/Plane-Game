@@ -93,7 +93,6 @@ while True:
         bankAccountLevelTextR.kill()
         bankAccountLevelTextL = Text("$"+str(playerBankAmount), [50,150], size, (100,200,100))
         bankAccountLevelTextR = Text("$"+str(playerBankAmount), [size[0]-50,150], size, (100,200,100))
-        tooMuchMoney = Text("", [size[0]/2,size[1]/2], size, (250,70,70))
         
         attributes = ("#GAS TANK#","# PROFIT #","# COINS  #","# STARS  #","#BOOSTERS#")
         symbols = ('1','2','3','4','5','6')
@@ -160,7 +159,7 @@ while True:
         
         tooMuchMoneyTimer += 1
         
-        for textBox in textBoxes:
+        for tooMuchMoney in textBoxes:
             if tooMuchMoneyTimer > 100:
                 tooMuchMoney.kill()
                 print "don killed a tooMuchMoney"
