@@ -91,13 +91,16 @@ while True:
         
         attributes = ("#GAS TANK#","# PROFIT #","# COINS  #","# STARS  #","#BOOSTERS#")
         symbols = ('1','2','3','4','5','6')
-        
+        #gasTankCosts = (
         for button in buttons:
             if button.isClicked(pt):
                 print "don clicked: "+str(button), button.symbol, button.attribute, attributes[0]
                 if button.attribute == attributes[0]:
+                    #for symbol in symbols:
+                        #if button.symbol == symbol:
+                            if playerBankAmount >= 
                     if button.symbol == symbols[0]:
-                        if playerBankAmount >= 25:
+                        if playerBankAmount >= 500:
                             playerMaxFuelTime = 25
                             playerBankAmount += -500
                         else:
@@ -107,6 +110,38 @@ while True:
                         if playerBankAmount >= 650:
                             playerMaxFuelTime = 40
                             playerBankAmount += -650
+                        else:
+                            tooMuchMoney = Text("That costs too much!!!", [size[0]/2,size[1]/2], size, (250,70,70))
+                            tooMuchMoneyTimer = 0
+                    if button.symbol == symbols[2]:
+                        if playerBankAmount >= 900:
+                            playerMaxFuelTime = 50
+                            playerBankAmount += -900
+                        else:
+                            tooMuchMoney = Text("That costs too much!!!", [size[0]/2,size[1]/2], size, (250,70,70))
+                            tooMuchMoneyTimer = 0
+                    if button.symbol == symbols[3]:
+                        if playerBankAmount >= 1100:
+                            playerMaxFuelTime = 60
+                            playerBankAmount += -1100
+                        else:
+                            tooMuchMoney = Text("That costs too much!!!", [size[0]/2,size[1]/2], size, (250,70,70))
+                            tooMuchMoneyTimer = 0
+                    if button.symbol == symbols[4]:
+                        if playerBankAmount >= 1500:
+                            playerMaxFuelTime = 70
+                            playerBankAmount += -1500
+                        else:
+                            tooMuchMoney = Text("That costs too much!!!", [size[0]/2,size[1]/2], size, (250,70,70))
+                            tooMuchMoneyTimer = 0
+                    if button.symbol == symbols[5]:
+                        if playerBankAmount >= 3000:
+                            playerMaxFuelTime = 60*60
+                            playerBankAmount += -3000
+                        else:
+                            tooMuchMoney = Text("That costs too much!!!", [size[0]/2,size[1]/2], size, (250,70,70))
+                            tooMuchMoneyTimer = 0
+                    
         
         
         tooMuchMoneyTimer += 1
