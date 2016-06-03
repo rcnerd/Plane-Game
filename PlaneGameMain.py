@@ -57,6 +57,19 @@ cc = 0 # used for picking a single object in a list see 192 ish
 ground = 6*50
 playerBankAmount = 0
 playerMaxFuelTime = 15
+coinDensity = 10
+boosterDensity = 6
+
+attributes = ("#GAS TANK#","# PROFIT #","# COINS  #","# STARS  #","#BOOSTERS#")
+symbols = ('1','2','3','4','5','6')
+gasTankCosts = (500,650,900,1100,1500,3000)
+gasTankLevels = (25,40,50,60,70,(60*60))#starts at 15
+profitCosts = (650,1100,3000)
+profitLevels = (50,75,100)#starts at 25
+coinDensityCosts = (500,900,1500)
+coinDensities = (15,20,30)#starts at 10
+boosterDensityCosts = (25,1100,3000)
+boosterDensities = (10,15)#starts at 6
 
 while True:
     
@@ -72,6 +85,7 @@ while True:
     bankAccountLevelTextR = Text("$"+str(playerBankAmount), [size[0]-50,150], size, (100,200,100))
     
     tooMuchMoneyTimer = 0
+    tooMuchMoney = Text("", [size[0]/2,size[1]/2], size, (250,70,70))
     while shop:
         pt = [0,0]
         for event in pygame.event.get():
@@ -97,16 +111,8 @@ while True:
         bankAccountLevelTextL = Text("$"+str(playerBankAmount), [50,150], size, (100,200,100))
         bankAccountLevelTextR = Text("$"+str(playerBankAmount), [size[0]-50,150], size, (100,200,100))
         
-        attributes = ("#GAS TANK#","# PROFIT #","# COINS  #","# STARS  #","#BOOSTERS#")
-        symbols = ('1','2','3','4','5','6')
-        gasTankCosts = (500,650,900,1100,1500,3000)
-        gasTankLevels = (25,40,50,60,70,(60*60))#starts at 15
-        profitCosts = (650,1100,3000)
-        profitLevels = (50,75,100)#starts at 25
-        coinDensityCosts = (500,900,1500)
-        coinDensities = (15,20,30)#starts at 10
-        boosterDensityCosts = (1100,3000)
-        boosterDensities = (10,15)#starts at 6
+        
+
         for button in buttons:
             if button.isClicked(pt):
                 print "don clicked: "+str(button), button.symbol, button.attribute
@@ -162,12 +168,15 @@ while True:
         
         tooMuchMoneyTimer += 1
         
-        for tooMuchMoney in textBoxes:
-            if tooMuchMoneyTimer > 100:
-                tooMuchMoney.kill()
-                print "don killed a tooMuchMoney"
+        if tooMuchMoneyTimer > 100:
+            tooMuchMoney.kill()
+            tooMuchMoney = Text("", [size[0]/2,size[1]/2], size, (250,70,70))
+            tooMuchMoneyTimer = 0
+            print "don cleared tooMuchMoney Text"
+        
         all.update(size,
                 shopScroll)
+        
         shopScroll = [0,0]
             
         bgColor = r,g,b
@@ -307,7 +316,7 @@ while True:
             for y in range(75, 254*50, 50):
                 y += -2000
                 gamePiece = random.randint(0, 1000)
-                if gamePiece == 0 or gamePiece == 1 or gamePiece == 2 or gamePiece == 3 or gamePiece == 4 or gamePiece == 5 or gamePiece == 6 or gamePiece == 7 or gamePiece == 8 or gamePiece == 9:
+                if gamePiece in range(0, coinDensity+1):
                     Coin(["Pictures/Game pieces/GoldCoinSprite/GoldCoinSprite/Coin1.png",
                             "Pictures/Game pieces/GoldCoinSprite/GoldCoinSprite/Coin2.png",
                             "Pictures/Game pieces/GoldCoinSprite/GoldCoinSprite/Coin3.png",
@@ -319,7 +328,7 @@ while True:
                 elif gamePiece == 10:
                     Cloud("Pictures/Blocks, and background/BadCloud.png",
                             [1500, y])                
-                elif gamePiece == 11 or gamePiece ==12 or gamePiece == 13 or gamePiece == 14 or gamePiece == 15 or gamePiece == 16:
+                elif gamePiece in range(11, boosterDensity+11):
                     Booster(["Pictures/Game pieces/Booster1.png",
                                 "Pictures/Game pieces/Booster2.png",
                                 "Pictures/Game pieces/Booster3.png",

@@ -91,7 +91,7 @@ class Player(pygame.sprite.Sprite):
                 print self.bankAmount
                 return True
             elif other.symbol == "^":
-                self.fuelLevel += self.fuelUseRate * 60
+                self.fuelLevel = self.maxFuelLevel-1
                 other.kill()
                 print self.fuelLevel
                 return True
