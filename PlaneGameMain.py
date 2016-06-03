@@ -184,9 +184,7 @@ while True:
     level = Level("Levels/Level1.layout", playerBankAmount, playerMaxFuelTime)
 
     player = level.player
-    
-    fuel = FuelGuage(player.fuelLevel, [50,50])
-    
+        
     bgColor = r,g,b = 135, 206, 235
     
     startupCount = 0
@@ -251,7 +249,8 @@ while True:
             player.speed = [4,0]
             all.update(size,
                 player.speed,
-                player.didStaticMove)
+                player.didStaticMove,
+                player.fuelLevel)
         
         if startupCount > 500:
             startup = False
@@ -270,6 +269,9 @@ while True:
     player.speed = [5,0]
     player.place([width/2, height/2])
     #print [width/2, height/2]
+    
+    fuel = FuelGuage(player.fuelLevel, [50,50])
+
     
     start = time.time()
     
@@ -385,6 +387,8 @@ while True:
         start = time.time()
         #print ">>>>>>>>>>>>>>>>>>>>  FPS>>>>> ",clock.get_fps()
         
+    for s in hud.sprites():
+        s.kill()
     while not startup and player.fuelLevel < 0 and player.rect.center[1] < 1100:
         
         for event in pygame.event.get():
