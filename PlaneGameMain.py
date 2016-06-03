@@ -58,7 +58,7 @@ ground = 6*50
 playerBankAmount = 0
 playerMaxFuelTime = 15
 coinDensity = 10
-boosterDensity = 6
+boosterDensity = 3
 
 attributes = ("#GAS TANK#","# PROFIT #","# COINS  #","# STARS  #","#BOOSTERS#")
 symbols = ('1','2','3','4','5','6')
@@ -68,8 +68,8 @@ profitCosts = (650,1100,3000)
 profitLevels = (50,75,100)#starts at 25
 coinDensityCosts = (500,900,1500)
 coinDensities = (15,20,30)#starts at 10
-boosterDensityCosts = (25,1100,3000)
-boosterDensities = (10,15)#starts at 6
+boosterDensityCosts = (1100,3000)
+boosterDensities = (6,10)#starts at 6
 
 while True:
     

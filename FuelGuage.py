@@ -7,7 +7,7 @@ class FuelGuage(pygame.sprite.Sprite):
         for i in range(0,110,10):
             self.images += [pygame.transform.scale(pygame.image.load("Pictures/Game pieces/"+str(i)+"fuel.png"), [24,70])]
         self.maxFuel = maxFuel
-        print maxFuel
+        #print maxFuel
         self.currentFuel = maxFuel
         self.percentFuel = float(self.currentFuel)/float(self.maxFuel)*100
         
