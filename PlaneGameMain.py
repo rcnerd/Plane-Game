@@ -59,7 +59,7 @@ playerBankAmount = 0
 playerMaxFuelTime = 15
 playerProfit = 25
 coinDensity = 10
-boosterDensity = 3
+boosterDensity = 1
 
 attributes = ("#GAS TANK#","# PROFIT #","# COINS  #","# STARS  #","#BOOSTERS#")
 symbols = ('1','2','3','4','5','6')
@@ -70,9 +70,12 @@ profitLevels = (50,75,100)#starts at 25
 coinDensityCosts = (500,900,1500)
 coinDensities = (15,20,30)#starts at 10
 boosterDensityCosts = (1100,3000)
-boosterDensities = (6,10)#starts at 6
+boosterDensities = (3,6)#starts at 1
+
 
 while True:
+    
+    print boosterDensity, playerProfit, playerBankAmount, playerMaxFuelTime, coinDensity
     
     for person in everyone:
         person.kill()
@@ -137,11 +140,11 @@ while True:
                     c=0
                     for symbol in symbols:
                         if button.symbol == symbol:
-                            if True:#playerProfit < profitLevels[c]:
+                            if playerProfit < profitLevels[c]:
                                 if playerBankAmount >= profitCosts[c]:
-                                    #player.profit = profitLevels[c]
+                                    player.profit = profitLevels[c]
                                     playerBankAmount += - profitCosts[c]
-                                    #print playerProfit
+                                    print playerProfit
                                 else:
                                     tooMuchMoney.kill()
                                     tooMuchMoney = Text("", [size[0]/2,size[1]/2], size, (250,70,70))
@@ -296,6 +299,8 @@ while True:
     player.place([width/2, height/2])
     #print [width/2, height/2]
     
+    player.fuelLevel = player.maxFuelLevel
+    
     fuel = FuelGuage(player.maxFuelLevel, [50,50])
 
     
@@ -342,7 +347,7 @@ while True:
                             "Pictures/Game pieces/GoldCoinSprite/GoldCoinSprite/Coin6.png"], "0",
                             [1100, y])
                     #print y, gamePieces.sprites()[-1].kind
-                elif gamePiece == 10:
+                elif gamePiece == 100:
                     Cloud("Pictures/Blocks, and background/BadCloud.png",
                             [1500, y])                
                 elif gamePiece in range(11, boosterDensity+11):
