@@ -53,7 +53,7 @@ startup = True
 shop = False
 arrowKeyPressed = False
 
-cc = 0 # used for picking a single object in a list see 192 ish
+cc = 0 # used for picking a single object in a list see CTRL+'f' " cc "
 ground = 6*50
 playerBankAmount = 0
 playerMaxFuelTime = 15

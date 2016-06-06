@@ -24,7 +24,7 @@ class Shop():
         
         previousLine = 0
         chars = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z','#']
-        buttons = ['1','2','3','4','5','6','7','8','9','0','<','>']
+        buttons = ['1','2','3','4','5','6','7','8','9','0','<','p']
         for y, line in enumerate(lines):
             print y,line
             for x, c in enumerate(line):
