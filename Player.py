@@ -1,7 +1,7 @@
 import sys, pygame, math, random
 
 class Player(pygame.sprite.Sprite):
-    def __init__(self, images, pos=[0,0], previousBankAccount = 0, playerMaxFuelTime = 15, speed = [3, 1]):
+    def __init__(self, images, pos=[0,0], previousBankAccount = 0, playerMaxFuelTime = 15, coinValue = 25, speed = [3, 1]):
         pygame.sprite.Sprite.__init__(self, self.containers)
         self.speedx = speed[0]
         self.speedy = speed[1]
@@ -13,6 +13,7 @@ class Player(pygame.sprite.Sprite):
         self.fuelUseRate = self.maxFuelLevel/(playerMaxFuelTime*60) #15 seconds at 60 frames 
         #print self.fuelUseRate
         self.bankAmount = previousBankAccount
+        self.coinValue = coinValue
         
         self.images = []
         for image in images:
@@ -86,12 +87,12 @@ class Player(pygame.sprite.Sprite):
                 self.fly("fly up")
                 return True
             elif other.symbol == "0":
-                self.bankAmount += 25
+                self.bankAmount += self.coinValue
                 other.kill()
                 print self.bankAmount
                 return True
             elif other.symbol == "^":
-                self.fuelLevel = self.maxFuelLevel-1
+                self.fuelLevel = self.maxFuelLevel
                 other.kill()
                 print self.fuelLevel
                 return True
