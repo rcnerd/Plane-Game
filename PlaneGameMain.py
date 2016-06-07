@@ -62,11 +62,11 @@ coinDensity = 10
 boosterDensity = 1
 
 
-gasTankCosts = (500,650,900,1100,1500,3000)
+gasTankCosts = (500,650,900,1100,1500,6000)
 gasTankLevels = (25,40,50,60,70,(60*60))#starts at 15
-profitCosts = (650,1100,3000)
+profitCosts = (650,1100,4000)
 profitLevels = (50,75,100)#starts at 25
-coinDensityCosts = (500,900,1500)
+coinDensityCosts = (500,1100,2000)
 coinDensities = (15,20,30)#starts at 10
 boosterDensityCosts = (1100,3000)
 boosterDensities = (3,6)#starts at 1
@@ -116,7 +116,7 @@ while True:
                 if event.key == 106 and enableEgg == True:
                     enableEgg = False
                     print "you just got a bonus!!!"
-                    playerBankAmount += 100
+                    playerBankAmount += 1000
                     
         bankAccountLevelTextL.kill()
         #bankAccountLevelTextR.kill()
@@ -142,7 +142,7 @@ while True:
                                 else:
                                     tooMuchMoney.kill()
                                     tooMuchMoney = Text("", [size[0]/2,size[1]/2], size, (250,70,70))
-                                    tooMuchMoney = Text("That costs too much!!!", [size[0]/2,size[1]/2], size, (250,70,70))
+                                    tooMuchMoney = Text("That costs too much!!!" + str(gasTankCosts[c]), [size[0]/2,size[1]/2], size, (250,70,70))
                                     tooMuchMoneyTimer = 0
                             else: print "failed"
                         c+=1
@@ -160,7 +160,7 @@ while True:
                                 else:
                                     tooMuchMoney.kill()
                                     tooMuchMoney = Text("", [size[0]/2,size[1]/2], size, (250,70,70))
-                                    tooMuchMoney = Text("That costs too much!!!", [size[0]/2,size[1]/2], size, (250,70,70))
+                                    tooMuchMoney = Text("That costs too much!!!" + str(profitCosts[c]), [size[0]/2,size[1]/2], size, (250,70,70))
                                     tooMuchMoneyTimer = 0
                             else: print "failed"
                         c+=1
@@ -178,7 +178,7 @@ while True:
                                 else:
                                     tooMuchMoney.kill()
                                     tooMuchMoney = Text("", [size[0]/2,size[1]/2], size, (250,70,70))
-                                    tooMuchMoney = Text("That costs too much!!!", [size[0]/2,size[1]/2], size, (250,70,70))
+                                    tooMuchMoney = Text("That costs too much!!!" = str(coinDensityCosts[c]), [size[0]/2,size[1]/2], size, (250,70,70))
                                     tooMuchMoneyTimer = 0
                             else: print "failed"
                         c+=1
@@ -196,7 +196,7 @@ while True:
                                 else:
                                     tooMuchMoney.kill()
                                     tooMuchMoney = Text("", [size[0]/2,size[1]/2], size, (250,70,70))
-                                    tooMuchMoney = Text("That costs too much!!!", [size[0]/2,size[1]/2], size, (250,70,70))
+                                    tooMuchMoney = Text("That costs too much!!!" + str(boosterDensityCosts[c]), [size[0]/2,size[1]/2], size, (250,70,70))
                                     tooMuchMoneyTimer = 0
                             else: print "failed"
                         c+=1
@@ -383,7 +383,7 @@ while True:
                 elif gamePiece == 100:
                     Cloud("Pictures/Blocks, and background/BadCloud.png",
                             [1500, y])                
-                elif gamePiece in range(11, boosterDensity+11):
+                elif gamePiece in range(31, boosterDensity+31):
                     Booster(["Pictures/Game pieces/Booster1.png",
                                 "Pictures/Game pieces/Booster2.png",
                                 "Pictures/Game pieces/Booster3.png",
