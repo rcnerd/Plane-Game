@@ -84,11 +84,13 @@ while True:
     
     
     
-    bankAccountLevelTextL = Text("$"+str(playerBankAmount), [50,150], size, (100,200,100))
-    bankAccountLevelTextR = Text("$"+str(playerBankAmount), [size[0]-50,150], size, (100,200,100))
+    bankAccountLevelTextL = Text("$"+str(playerBankAmount), [size[0]/2,size[1]/2], size, (100,200,100))
+    #bankAccountLevelTextR = Text("$"+str(playerBankAmount), [size[0]-50,150], size, (100,200,100))
     
     tooMuchMoneyTimer = 0
+    youBoughtStuffTimer = 0
     tooMuchMoney = Text("", [size[0]/2,size[1]/2], size, (250,70,70))
+    youBoughtStuffs = Text("", [size[0]/2,size[1]/2], size, (250,70,70))
     
     attributes = ("#GAS TANK#","# PROFIT #","# COINS  #","# STARS  #","#BOOSTERS#",'q','p')
     symbols = ('1','2','3','4','5','6')
@@ -117,9 +119,9 @@ while True:
                     playerBankAmount += 100
                     
         bankAccountLevelTextL.kill()
-        bankAccountLevelTextR.kill()
-        bankAccountLevelTextL = Text("$"+str(playerBankAmount), [50,150], size, (100,200,100))
-        bankAccountLevelTextR = Text("$"+str(playerBankAmount), [size[0]-50,150], size, (100,200,100))
+        #bankAccountLevelTextR.kill()
+        bankAccountLevelTextL = Text("$"+str(playerBankAmount), [size[0]/2-50*6,size[1]/2], size, (100,200,100))
+        #bankAccountLevelTextR = Text("$"+str(playerBankAmount), [size[0]-50,150], size, (100,200,100))
         
         
 
@@ -134,6 +136,8 @@ while True:
                                 if playerBankAmount >= gasTankCosts[c]:
                                     playerMaxFuelTime = gasTankLevels[c]
                                     playerBankAmount += -gasTankCosts[c]
+                                    youBoughtStuffs = Text("-$$$", [size[0]/2,size[1]/2], size, (250,70,70))
+                                    youBoughtStuffTimer = 0
                                     print playerMaxFuelTime
                                 else:
                                     tooMuchMoney.kill()
@@ -150,6 +154,8 @@ while True:
                                 if playerBankAmount >= profitCosts[c]:
                                     player.profit = profitLevels[c]
                                     playerBankAmount += - profitCosts[c]
+                                    youBoughtStuffs = Text("-$$$", [size[0]/2,size[1]/2], size, (250,70,70))
+                                    youBoughtStuffTimer = 0
                                     print playerProfit
                                 else:
                                     tooMuchMoney.kill()
@@ -166,6 +172,8 @@ while True:
                                 if playerBankAmount >= coinDensityCosts[c]:
                                     coinDensity = coinDensities[c]
                                     playerBankAmount += - coinDensityCosts[c]
+                                    youBoughtStuffs = Text("-$$$", [size[0]/2,size[1]/2], size, (250,70,70))
+                                    youBoughtStuffTimer = 0
                                     print coinDensity
                                 else:
                                     tooMuchMoney.kill()
@@ -182,6 +190,8 @@ while True:
                                 if playerBankAmount >= boosterDensityCosts[c]:
                                     boosterDensity = boosterDensities[c]
                                     playerBankAmount += -boosterDensityCosts[c]
+                                    youBoughtStuffs = Text("-$$$", [size[0]/2,size[1]/2], size, (250,70,70))
+                                    youBoughtStuffTimer = 0
                                     print boosterDensity
                                 else:
                                     tooMuchMoney.kill()
@@ -204,9 +214,18 @@ while True:
         
         if tooMuchMoneyTimer > 100:
             tooMuchMoney.kill()
+            
             tooMuchMoney = Text("", [size[0]/2,size[1]/2], size, (250,70,70))
+            
             tooMuchMoneyTimer = 0
             print "don cleared tooMuchMoney Text"
+        
+        youBoughtStuffTimer += 1
+        
+        if youBoughtStuffTimer > 75:
+            youBoughtStuffs.kill()
+            youBoughtStuffs = Text("", [size[0]/2,size[1]/2], size, (250,70,70))
+            youBoughtStuffTimer = 0
         
         all.update(size,
                 shopScroll)
