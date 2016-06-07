@@ -61,8 +61,7 @@ playerProfit = 25
 coinDensity = 10
 boosterDensity = 1
 
-attributes = ("#GAS TANK#","# PROFIT #","# COINS  #","# STARS  #","#BOOSTERS#")
-symbols = ('1','2','3','4','5','6')
+
 gasTankCosts = (500,650,900,1100,1500,3000)
 gasTankLevels = (25,40,50,60,70,(60*60))#starts at 15
 profitCosts = (650,1100,3000)
@@ -90,6 +89,10 @@ while True:
     
     tooMuchMoneyTimer = 0
     tooMuchMoney = Text("", [size[0]/2,size[1]/2], size, (250,70,70))
+    
+    attributes = ("#GAS TANK#","# PROFIT #","# COINS  #","# STARS  #","#BOOSTERS#",'q','p')
+    symbols = ('1','2','3','4','5','6')
+    enableEgg = False
     while shop:
         pt = [0,0]
         for event in pygame.event.get():
@@ -104,11 +107,14 @@ while True:
                 if event.button == 1:
                     pt = pygame.mouse.get_pos()
                 elif event.button == 3:
-                    shop = False
-                    startup = True
-                    for person in everyone:
-                        person.kill()
-                    bgColor = r,g,b = 250,110,110
+                    enableEgg = True
+                    print enableEgg
+            elif event.type == pygame.KEYDOWN:
+                #print event.key
+                if event.key == 106 and enableEgg == True:
+                    enableEgg = False
+                    print "you just got a bonus!!!"
+                    playerBankAmount += 100
                     
         bankAccountLevelTextL.kill()
         bankAccountLevelTextR.kill()
@@ -184,6 +190,14 @@ while True:
                                     tooMuchMoneyTimer = 0
                             else: print "failed"
                         c+=1
+                if button.symbol == attributes[6]:
+                    shop = False
+                    startup = True
+                    for person in everyone:
+                        person.kill()
+                    bgColor = r,g,b = 250,110,110
+                elif button.symbol == attributes[5]:
+                    sys.exit()
         
         
         tooMuchMoneyTimer += 1
