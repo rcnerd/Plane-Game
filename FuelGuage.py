@@ -24,6 +24,6 @@ class FuelGuage(pygame.sprite.Sprite):
         
         self.percentFuel = float(self.currentFuel)/float(self.maxFuel)*100
         
-        print self.percentFuel
+        #print self.percentFuel
         self.frame = int(round(self.percentFuel/10))
         self.image = self.images[self.frame]

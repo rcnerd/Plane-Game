@@ -47,6 +47,7 @@ Cloud.containers = (clouds, everyone, all)
 Button.containers = (buttons, everyone, all)
 Text.containers = (textBoxes, everyone, all)
 FuelGuage.containers = (hud, all)
+Spike.containers = (spikes, gamePieces, actionGamePieces, everyone, all)
 
 
 startup = True
@@ -60,6 +61,7 @@ playerMaxFuelTime = 15
 playerProfit = 25
 coinDensity = 10
 boosterDensity = 1
+spikeDensity = 0
 
 
 gasTankCosts = (500,650,900,1100,1500,6000)
@@ -74,7 +76,7 @@ boosterDensities = (3,6)#starts at 1
 
 while True:
     
-    print boosterDensity, playerProfit, playerBankAmount, playerMaxFuelTime, coinDensity
+    #print boosterDensity, playerProfit, playerBankAmount, playerMaxFuelTime, coinDensity
     
     for person in everyone:
         person.kill()
@@ -110,7 +112,7 @@ while True:
                     pt = pygame.mouse.get_pos()
                 elif event.button == 3:
                     enableEgg = True
-                    print enableEgg
+                    #print enableEgg
             elif event.type == pygame.KEYDOWN:
                 #print event.key
                 if event.key == 106 and enableEgg == True:
@@ -218,7 +220,7 @@ while True:
             tooMuchMoney = Text("", [size[0]/2,size[1]/2], size, (250,70,70))
             
             tooMuchMoneyTimer = 0
-            print "don cleared tooMuchMoney Text"
+            #print "don cleared tooMuchMoney Text"
         
         youBoughtStuffTimer += 1
         
@@ -413,6 +415,14 @@ while True:
                                 "Pictures/Game pieces/Booster3.png",
                                 "Pictures/Game pieces/Booster2.png"], "^",
                             [1100, y])
+                elif gamePiece in range(0, spikeDensity):
+                    Spike(["Pictures/Pointer.png",
+                            "Pictures/Game pieces/GoldCoinSprite/GoldCoinSprite/Coin2.png",
+                            "Pictures/Game pieces/GoldCoinSprite/GoldCoinSprite/Coin3.png",
+                            "Pictures/Game pieces/GoldCoinSprite/GoldCoinSprite/Coin4.png",
+                            "Pictures/Game pieces/GoldCoinSprite/GoldCoinSprite/Coin5.png",
+                            "Pictures/Game pieces/GoldCoinSprite/GoldCoinSprite/Coin6.png"], "!",
+                            [1100, y])
         
         now = time.time() -start
         #print "spawning: ", now
@@ -452,6 +462,9 @@ while True:
         for booster in boosters:
             if booster.rect.center[1] > ground:
                 booster.kill()
+        for spike in spikes:
+            if spike.rect.center[1] > ground:
+                spike.kill()
         
         now = time.time() -start
         #print "kill objects: ", now
@@ -490,7 +503,7 @@ while True:
         
         player.speed = [3,2]
         player.staticMove()
-        print player.bankAmount
+        #print player.bankAmount
         
         playerBankAmount = player.bankAmount
         
@@ -500,5 +513,9 @@ while True:
         pygame.display.update(dirty)
         pygame.display.flip()
         clock.tick(60)
+    
+    
+    spikeDensity += 5
+    print spikeDensity
         
     

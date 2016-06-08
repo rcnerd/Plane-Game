@@ -89,13 +89,17 @@ class Player(pygame.sprite.Sprite):
             elif other.symbol == "0":
                 self.bankAmount += self.coinValue
                 other.kill()
-                print self.bankAmount
+                #print self.bankAmount
                 return True
             elif other.symbol == "^":
                 self.fuelLevel += self.fuelUseRate * 60
                 other.kill()
-                print self.fuelLevel
+                #print self.fuelLevel
                 return True
+            elif other.symbol == '!':
+                self.fuelUseRate += 100
+                other.kill()
+                print "!!!" + str(self.fuelUseRate)
             else:
                 return False
         
