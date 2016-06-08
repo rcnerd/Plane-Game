@@ -120,7 +120,7 @@ while True:
                     
         bankAccountLevelTextL.kill()
         #bankAccountLevelTextR.kill()
-        bankAccountLevelTextL = Text("$"+str(playerBankAmount), [size[0]/2-50*6,size[1]/2], size, (100,200,100))
+        bankAccountLevelTextL = Text("$"+str(playerBankAmount), [size[0]/2-50*6,size[1]/2+50], size, (100,200,100))
         #bankAccountLevelTextR = Text("$"+str(playerBankAmount), [size[0]-50,150], size, (100,200,100))
         
         
@@ -142,7 +142,7 @@ while True:
                                 else:
                                     tooMuchMoney.kill()
                                     tooMuchMoney = Text("", [size[0]/2,size[1]/2], size, (250,70,70))
-                                    tooMuchMoney = Text("That costs too much!!!" + str(gasTankCosts[c]), [size[0]/2,size[1]/2], size, (250,70,70))
+                                    tooMuchMoney = Text("That costs too much!!! $" + str(gasTankCosts[c]), [size[0]/2,size[1]/2], size, (250,70,70))
                                     tooMuchMoneyTimer = 0
                             else: print "failed"
                         c+=1
@@ -160,7 +160,7 @@ while True:
                                 else:
                                     tooMuchMoney.kill()
                                     tooMuchMoney = Text("", [size[0]/2,size[1]/2], size, (250,70,70))
-                                    tooMuchMoney = Text("That costs too much!!!" + str(profitCosts[c]), [size[0]/2,size[1]/2], size, (250,70,70))
+                                    tooMuchMoney = Text("That costs too much!!! $" + str(profitCosts[c]), [size[0]/2,size[1]/2], size, (250,70,70))
                                     tooMuchMoneyTimer = 0
                             else: print "failed"
                         c+=1
@@ -178,7 +178,7 @@ while True:
                                 else:
                                     tooMuchMoney.kill()
                                     tooMuchMoney = Text("", [size[0]/2,size[1]/2], size, (250,70,70))
-                                    tooMuchMoney = Text("That costs too much!!!" = str(coinDensityCosts[c]), [size[0]/2,size[1]/2], size, (250,70,70))
+                                    tooMuchMoney = Text("That costs too much!!! $" + str(coinDensityCosts[c]), [size[0]/2,size[1]/2], size, (250,70,70))
                                     tooMuchMoneyTimer = 0
                             else: print "failed"
                         c+=1
@@ -196,7 +196,7 @@ while True:
                                 else:
                                     tooMuchMoney.kill()
                                     tooMuchMoney = Text("", [size[0]/2,size[1]/2], size, (250,70,70))
-                                    tooMuchMoney = Text("That costs too much!!!" + str(boosterDensityCosts[c]), [size[0]/2,size[1]/2], size, (250,70,70))
+                                    tooMuchMoney = Text("That costs too much!!! $" + str(boosterDensityCosts[c]), [size[0]/2,size[1]/2], size, (250,70,70))
                                     tooMuchMoneyTimer = 0
                             else: print "failed"
                         c+=1
