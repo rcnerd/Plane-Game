@@ -352,14 +352,26 @@ while True:
                 if event.key == pygame.K_UP:
                     player.fly("fly up")
                     arrowKeyPressed = True
+                elif event.key == pygame.K_w:
+                    player.fly("fly up")
+                    arrowKeyPressed = True
                 elif event.key == pygame.K_DOWN:
+                    player.fly("fly down")
+                    arrowKeyPressed = True
+                elif event.key == pygame.K_s:
                     player.fly("fly down")
                     arrowKeyPressed = True
             elif event.type == pygame.KEYUP:
                 if event.key == pygame.K_UP:
                     player.fly("fly straight")
                     arrowKeyPressed = True
+                elif event.key == pygame.K_w:
+                    player.fly("fly straight")
+                    arrowKeyPressed = True
                 elif event.key == pygame.K_DOWN:
+                    player.fly("fly straight")
+                    arrowKeyPressed = True
+                elif event.key == pygame.K_s:
                     player.fly("fly straight")
                     arrowKeyPressed = True
         
