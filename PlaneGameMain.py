@@ -65,12 +65,12 @@ spikeDensity = 0
 
 
 gasTankCosts = (500,650,900,1100,1500,6000)
-gasTankLevels = (25,40,50,60,70,(60*60))#starts at 15
-profitCosts = (650,1100,4000)
+gasTankLevels = (25,40,50,60,70,(60*60*3))#starts at 15
+profitCosts = (650,1100,4100)
 profitLevels = (50,75,100)#starts at 25
 coinDensityCosts = (500,1100,2000)
 coinDensities = (15,20,30)#starts at 10
-boosterDensityCosts = (1100,3000)
+boosterDensityCosts = (2100,4000)
 boosterDensities = (3,6)#starts at 1
 
 
@@ -86,7 +86,7 @@ while True:
     
     
     
-    bankAccountLevelTextL = Text("$"+str(playerBankAmount), [size[0]/2,size[1]/2], size, (100,200,100))
+    bankAccountLevelTextL = Text("$"+str(playerBankAmount), [size[0]/2,250], size, (100,200,100))
     #bankAccountLevelTextR = Text("$"+str(playerBankAmount), [size[0]-50,150], size, (100,200,100))
     
     tooMuchMoneyTimer = 0
@@ -120,16 +120,17 @@ while True:
                     print "you just got a bonus!!!"
                     playerBankAmount += 1000
                     
+        bALTlocation = bankAccountLevelTextL.rect.center
         bankAccountLevelTextL.kill()
         #bankAccountLevelTextR.kill()
-        bankAccountLevelTextL = Text("$"+str(playerBankAmount), [size[0]/2-50*6,size[1]/2+50], size, (100,200,100))
+        bankAccountLevelTextL = Text("$"+str(playerBankAmount), bALTlocation, size, (100,200,100))
         #bankAccountLevelTextR = Text("$"+str(playerBankAmount), [size[0]-50,150], size, (100,200,100))
         
         
 
         for button in buttons:
             if button.isClicked(pt):
-                print "don clicked: "+str(button), button.symbol, button.attribute
+                #print "don clicked: "+str(button), button.symbol, button.attribute
                 if button.attribute == attributes[0]:
                     c=0
                     for symbol in symbols:
@@ -154,7 +155,7 @@ while True:
                         if button.symbol == symbol:
                             if playerProfit < profitLevels[c]:
                                 if playerBankAmount >= profitCosts[c]:
-                                    player.profit = profitLevels[c]
+                                    playerProfit = profitLevels[c]
                                     playerBankAmount += - profitCosts[c]
                                     youBoughtStuffs = Text("-$$$", [size[0]/2,size[1]/2], size, (250,70,70))
                                     youBoughtStuffTimer = 0
@@ -231,6 +232,9 @@ while True:
         
         all.update(size,
                 shopScroll)
+        bankAccountLevelTextL.speed[0] = -shopScroll[0]
+        bankAccountLevelTextL.speed[1] = -shopScroll[1]
+        bankAccountLevelTextL.move()
         
         shopScroll = [0,0]
             
@@ -416,12 +420,14 @@ while True:
                                 "Pictures/Game pieces/Booster2.png"], "^",
                             [1100, y])
                 elif gamePiece in range(0, spikeDensity):
-                    Spike(["Pictures/Pointer.png",
-                            "Pictures/Game pieces/GoldCoinSprite/GoldCoinSprite/Coin2.png",
-                            "Pictures/Game pieces/GoldCoinSprite/GoldCoinSprite/Coin3.png",
-                            "Pictures/Game pieces/GoldCoinSprite/GoldCoinSprite/Coin4.png",
-                            "Pictures/Game pieces/GoldCoinSprite/GoldCoinSprite/Coin5.png",
-                            "Pictures/Game pieces/GoldCoinSprite/GoldCoinSprite/Coin6.png"], "!",
+                    Spike(["Pictures/Game pieces/spike.png",
+                            "Pictures/Game pieces/spike1.png",
+                            "Pictures/Game pieces/spike2.png",
+                            "Pictures/Game pieces/spike3.png",
+                            "Pictures/Game pieces/spike4.png",
+                            "Pictures/Game pieces/spike3.png",
+                            "Pictures/Game pieces/spike2.png",
+                            "Pictures/Game pieces/spike1.png"], "!",
                             [1100, y])
         
         now = time.time() -start
@@ -460,9 +466,11 @@ while True:
             if coin.rect.center[1] > ground:
                 coin.kill()
         for booster in boosters:
+            #print booster
             if booster.rect.center[1] > ground:
                 booster.kill()
         for spike in spikes:
+            #print spike
             if spike.rect.center[1] > ground:
                 spike.kill()
         
@@ -484,9 +492,9 @@ while True:
         
         
         now = time.time() -start
-        #print "drawing: ", now
+        print "drawing: ", now
         start = time.time()
-        #print ">>>>>>>>>>>>>>>>>>>>  FPS>>>>> ",clock.get_fps()
+        print ">>>>>>>>>>>>>>>>>>>>  FPS>>>>> ",clock.get_fps()
         
     for s in hud.sprites():
         s.kill()
@@ -497,7 +505,7 @@ while True:
                 sys.exit()
         
         if player.rect.center[1] > 700:
-            print "refreshing"
+            #print "refreshing"
             shop = True
             player.fuelLevel = player.maxFuelLevel
         

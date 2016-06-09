@@ -9,6 +9,7 @@ class Player(pygame.sprite.Sprite):
         self.virtPos = [25,0]
         self.virtSpeed = [0,0]
         self.maxFuelLevel = 100000
+        self.maxFuelTime = playerMaxFuelTime
         self.fuelLevel = self.maxFuelLevel
         self.fuelUseRate = self.maxFuelLevel/(playerMaxFuelTime*60) #15 seconds at 60 frames 
         #print self.fuelUseRate
@@ -93,8 +94,10 @@ class Player(pygame.sprite.Sprite):
                 return True
             elif other.symbol == "^":
                 self.fuelLevel += self.fuelUseRate * 60
+                if self.fuelUseRate >= self.maxFuelLevel/(self.maxFuelTime*60):
+                    self.fuelUseRate += -50
                 other.kill()
-                #print self.fuelLevel
+                print self.fuelLevel, self.fuelUseRate
                 return True
             elif other.symbol == '!':
                 self.fuelUseRate += 100
