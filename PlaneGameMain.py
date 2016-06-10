@@ -203,6 +203,7 @@ while True:
                                     tooMuchMoneyTimer = 0
                             else: print "failed"
                         c+=1
+                
                 if button.symbol == attributes[6]:
                     shop = False
                     startup = True
@@ -488,13 +489,13 @@ while True:
         dirty = all.draw(screen)
         pygame.display.update(dirty)
         pygame.display.flip()
-        clock.tick(60)
-        
         
         now = time.time() -start
-        print "drawing: ", now
+        #print "drawing: ", now
         start = time.time()
-        print ">>>>>>>>>>>>>>>>>>>>  FPS>>>>> ",clock.get_fps()
+        
+        clock.tick(60)
+        #print ">>>>>>>>>>>>>>>>>>>>  FPS>>>>> ",clock.get_fps()
         
     for s in hud.sprites():
         s.kill()

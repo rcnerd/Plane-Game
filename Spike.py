@@ -28,6 +28,7 @@ class Spike(pygame.sprite.Sprite):
         self.move()
         if self.rect.center[0] < self.blockSize[0]/2*-1 +10: #-1/2 block size so that we r + it is off screen
             self.kill()
+            print "killed spike"
             
         if self.timer < self.timerMax:
             self.timer += 1
