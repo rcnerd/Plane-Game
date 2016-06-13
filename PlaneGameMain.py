@@ -63,14 +63,14 @@ coinDensity = 10
 boosterDensity = 1
 spikeDensity = 0
 
-
-gasTankCosts = (500,650,900,1100,1500,6000)
+#cost multiplier order: 20,20,26,50,50,90,90,100,100,120,120,160,164,240
+gasTankCosts = (20*25,26*25,50*25,90*25,120*25,240*25)
 gasTankLevels = (25,40,50,60,70,(60*60*3))#starts at 15
-profitCosts = (650,1100,4100)
+profitCosts = (100*25,120*25,164*25)
 profitLevels = (50,75,100)#starts at 25
-coinDensityCosts = (500,1100,2000)
+coinDensityCosts = (20*25,50*25,100*25)
 coinDensities = (15,20,30)#starts at 10
-boosterDensityCosts = (2100,4000)
+boosterDensityCosts = (90*25,160*25)
 boosterDensities = (3,6)#starts at 1
 
 
