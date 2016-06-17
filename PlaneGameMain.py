@@ -524,7 +524,7 @@ while True:
         clock.tick(60)
     
     
-    spikeDensity += 5
+    spikeDensity += 2
     print spikeDensity
         
     
