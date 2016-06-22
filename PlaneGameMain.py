@@ -1,5 +1,5 @@
-#spooner git test
 #hunter git test
+
 import sys, pygame, math, random, time
 from Thing import *
 from Block import *
@@ -501,7 +501,7 @@ while True:
         
     for s in hud.sprites():
         s.kill()
-    while not startup and player.fuelLevel < 0 and player.rect.center[1] < 1100:
+    while not startup and player.fuelLevel < 0:# and player.rect.center[1] < 1100: ?!?!?!?!?!?!?!?!?!?!?!?
         
         for event in pygame.event.get():
             if event.type == pygame.QUIT: 
