@@ -95,7 +95,7 @@ class Player(pygame.sprite.Sprite):
             elif other.symbol == "^":
                 self.fuelLevel += self.fuelUseRate * 60
                 if self.fuelUseRate >= self.maxFuelLevel/(self.maxFuelTime*60):
-                    self.fuelUseRate += -50
+                    self.fuelUseRate += -20
                 other.kill()
                 print self.fuelLevel, self.fuelUseRate
                 return True
