@@ -18,10 +18,18 @@ clock = pygame.time.Clock()
 width = 1000 
 height = 700
 size = width, height
- 
+#screenModes = pygame.display.list_modes()
+#screenWidth = screenModes[0][0]
+#screenHeight = screenModes[0][1]
+#size = screenWidth, screenHeight
+
+#width = screenWidth 
+#height = screenHeight
+
 bgColor = r,g,b = 135, 206, 235
 
 screen = pygame.display.set_mode(size)
+#screen = pygame.display.set_mode(size, pygame.FULLSCREEN)
 
 blocks = pygame.sprite.Group()
 buttons = pygame.sprite.Group()
@@ -412,8 +420,9 @@ while True:
                             [1100, y])
                     #print y, gamePieces.sprites()[-1].kind
                 elif gamePiece == 100:
-                    Cloud("Pictures/Blocks, and background/BadCloud.png",
-                            [1500, y])                
+                    pass
+                    #Cloud("Pictures/Blocks, and background/BadCloud.png",
+                            #[1500, y])                
                 elif gamePiece in range(31, boosterDensity+31):
                     Booster(["Pictures/Game pieces/Booster1.png",
                                 "Pictures/Game pieces/Booster2.png",
